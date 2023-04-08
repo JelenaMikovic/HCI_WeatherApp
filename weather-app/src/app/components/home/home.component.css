@@ -8,6 +8,7 @@ body{
     background-color: rgba(0, 0, 0, 0.15);
     border-radius: 5px;
     padding: 5px;
+
 }
 
 p{
@@ -24,11 +25,12 @@ h3{
 
 .row{
     margin: 0;
-    width: 100%;
+    padding: 0;
 }
 
 .column{
     margin: 0;
+    padding: 0;
 }
 
 .col-sm-4{
@@ -54,4 +56,11 @@ h3{
 .col-sm-8{
     padding: 0;
     margin: 0;
+}
+#astro{
+    margin: 2px;
+}
+
+#visibility{
+    margin: 2px;
 }
