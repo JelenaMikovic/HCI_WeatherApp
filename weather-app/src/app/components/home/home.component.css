@@ -2,6 +2,12 @@ body{
     background-color: #4eA8D9;
     font-family: 'Poppins';
     font-weight: 300;
+    
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
 }
 
 .box{
@@ -23,6 +29,12 @@ h3{
     color: white;
 }
 
+.container{
+    margin-top: 10%;
+    width: 70%;
+    height: 60%;
+}
+
 .row{
     margin: 0;
     padding: 0;
@@ -36,6 +48,7 @@ h3{
 .col-sm-4{
     padding: 0;
     margin: 0;
+    padding-right: 48px;
 }
 
 .col-sm-5{
@@ -49,7 +62,7 @@ h3{
 }
 
 .col-sm-7{
-    padding: 2px;
+    padding: 4px;
     margin: 0;
 }
 
@@ -58,19 +71,22 @@ h3{
     margin: 0;
 }
 #astro{
-    margin: 2px;
+    margin: 4px;
 }
 
 #visibility{
-    margin: 2px;
+    margin: 4px;
+    height: 20vh;
 }
 
-#forcast{
-    margin: 0px;
+.astro2{
+    height: 40vh;
 }
 
-/* #kara{
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
-} */
+.air{
+    height: 26.6vh;
+}
+
+.forcast{
+    height: 68.7vh;
+}
