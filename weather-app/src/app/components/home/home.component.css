@@ -1,0 +1,57 @@
+body{
+    background-color: #4eA8D9;
+    font-family: 'Poppins';
+    font-weight: 300;
+}
+
+.box{
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+p{
+    color: white;
+}
+
+h1{
+    color: white;
+}
+
+h3{
+    color: white;
+}
+
+.row{
+    margin: 0;
+    width: 100%;
+}
+
+.column{
+    margin: 0;
+}
+
+.col-sm-4{
+    padding: 0;
+    margin: 0;
+}
+
+.col-sm-5{
+    padding: 0;
+    margin: 0;
+}
+
+.col-sm-6{
+    padding: 0;
+    margin: 0;
+}
+
+.col-sm-7{
+    padding: 0;
+    margin: 0;
+}
+
+.col-sm-8{
+    padding: 0;
+    margin: 0;
+}
