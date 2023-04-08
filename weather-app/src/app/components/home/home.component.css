@@ -2,10 +2,11 @@ body{
     background-color: #4eA8D9;
     font-family: 'Poppins';
     font-weight: 300;
-    
+    margin: 0;
+    height: 100%;
 }
 
-html, body {
+html{
     margin: 0;
     height: 100%;
 }
@@ -23,6 +24,7 @@ p{
 
 h1{
     color: white;
+    margin: 0px;
 }
 
 h3{
