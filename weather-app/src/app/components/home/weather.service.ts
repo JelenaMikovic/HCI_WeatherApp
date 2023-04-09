@@ -9,12 +9,17 @@ import { Forecast } from "./models/weather";
 
 export class WeatherService{
   constructor(private http:HttpClient) { }
-  apiHost = 'http://api.weatherapi.com/v1/';
+  apiHost = 'http://api.weatherapi.com/v1';
   key = 'c0e9367d1f0b4237804175441230804';
 
   getForecast(city: string): Observable<Forecast> {
     const url = `${this.apiHost}/forecast.json?key=${this.key}&q=${city}&days=3&aqi=yes&alerts=yes`;
     return this.http.get<Forecast>("http://api.weatherapi.com/v1/forecast.json?key=c0e9367d1f0b4237804175441230804&q=Belgrade&days=3&aqi=yes&alerts=yes");
+  }
+
+  getForecastHistory(city:string, date:string): Observable<Forecast> {
+    const url = `${this.apiHost}/history.json?key=${this.key}&q=${city}&dt=${date}`;
+    return this.http.get<Forecast>(url);
   }
 
 }
