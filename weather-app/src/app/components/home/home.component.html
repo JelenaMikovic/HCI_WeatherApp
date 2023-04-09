@@ -44,6 +44,13 @@
             <div class="row air" id="astro">
               <div class="box">
                 <p>AIR QUALITY</p>
+                <div id="air-quality">
+                  <p>CO2: {{forecast.current.air_quality.co.toFixed(2)}}</p>
+                  <p>NO2: {{forecast.current.air_quality.no2.toFixed(2)}}</p>
+                  <p>O3: {{forecast.current.air_quality.o3.toFixed(2)}}</p>
+                  <p>PM2.5: {{forecast.current.air_quality.pm2_5.toFixed(2)}}</p>
+                  <p>PM10: {{forecast.current.air_quality.pm10.toFixed(2)}}</p>
+                </div>
               </div>
             </div>
 
