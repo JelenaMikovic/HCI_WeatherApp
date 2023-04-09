@@ -8,11 +8,11 @@ import {Forecast} from "./models/weather";
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
-  forecast: Forecast;
-  constructor(private weatherService:WeatherService) {}
+export class HomeComponent implements OnInit{
+  ;
 
-  ngOnInit(): void {
-    
+  constructor(private weatherService:WeatherService) {}
+  ngOnInit() {
+
   }
 }
