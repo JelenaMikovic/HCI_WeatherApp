@@ -23,6 +23,7 @@ html{
 
 p{
     color: white;
+    margin: 0;
 }
 
 h1{
@@ -145,8 +146,87 @@ h3{
 
 .num{
     font-size: 30px;
+    margin-top: 10px;
 }
 
+.compass {
+    display: block;
+    width: 9vh;
+    height: 9vh;
+    border-radius: 100%;
+    border: 2px solid rgba(255, 255, 255, 1);
+    position: relative;
+    color: #ffffff;
+    
+  }
+  .compass .direction {
+    height: 100%;
+    width: 100%;
+    display: block;
+    background: transparent;
+    border-radius: 100%;
+  }
+  .compass .direction p {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    line-height: 80px;
+    display: block;
+    margin-top: -45px;
+    font-size: 20px;
+  }
+  .compass .direction p span {
+    display: block;
+    line-height: normal;
+    margin-top: -30px;
+    font-size: 11px;
+  }
+  .compass .arrow {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    top: 0;
+  }
+  .compass .arrow:after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 12px solid rgb(230, 133, 29);
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    margin-left: -5px;
+    z-index: 99;
+  }
+  .compass .arrow.NNE { transform: rotate(22.5deg); }
+  .compass .arrow.NE { transform: rotate(45deg); }
+  .compass .arrow.ENE { transform: rotate(67.5deg); }
+  .compass .arrow.E { transform: rotate(90deg); }
+  .compass .arrow.ESE { transform: rotate(112.5deg); }
+  .compass .arrow.SE { transform: rotate(135deg); }
+  .compass .arrow.SSE { transform: rotate(157.5deg); }
+  .compass .arrow.S { transform: rotate(180deg); }
+  .compass .arrow.SSW { transform: rotate(202.5deg); }
+  .compass .arrow.SW { transform: rotate(-135deg); }
+  .compass .arrow.WSW { transform: rotate(-114.5deg); }
+  .compass .arrow.W { transform: rotate(-90deg); }
+  .compass .arrow.WNW { transform: rotate(-69.5deg); }
+  .compass .arrow.NW { transform: rotate(-45deg); }
+  .compass .arrow.NNW { transform: rotate(-24.5deg);}
+
+.kara{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 @media screen and (max-width: 768px) {
     .col-sm-4 {
         padding: 0px;

@@ -114,7 +114,14 @@
           <div class="col-sm-6">
             <div class="box" id="visibility">
               <p>WIND</p>
-              <p class="text-center num">{{forecast.current.vis_km}}</p>
+              <div class="kara">
+                <div class="compass">
+                  <div class="direction">
+                    <p>{{forecast.current.wind_dir}}<span>{{forecast.current.wind_kph}} kph</span></p>
+                  </div>
+                  <div class="arrow arrow {{forecast.current.wind_dir}}"></div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="col-sm-6">
@@ -123,11 +130,7 @@
             </div>
           </div>
         </div>
-
       </div>
-
-
-
     </div>
   </div>
 
