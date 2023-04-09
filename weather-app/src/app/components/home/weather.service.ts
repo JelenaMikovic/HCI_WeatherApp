@@ -14,7 +14,7 @@ export class WeatherService{
 
   getForecast(city: string): Observable<Forecast> {
     const url = `${this.apiHost}/forecast.json?key=${this.key}&q=${city}&days=3&aqi=yes&alerts=yes`;
-    return this.http.get<Forecast>("http://api.weatherapi.com/v1/forecast.json?key=c0e9367d1f0b4237804175441230804&q=Belgrade&days=3&aqi=yes&alerts=yes");
+    return this.http.get<Forecast>("http://api.weatherapi.com/v1/forecast.json?key=c0e9367d1f0b4237804175441230804&q=Miami&days=3&aqi=yes&alerts=yes");
   }
 
 }

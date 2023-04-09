@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
@@ -9,110 +10,113 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
+
 <body *ngIf="hasLoaded">
 
-<div class="text-center">
+  <div class="text-center">
     <p class="city">{{forecast.location.name}}</p>
     <p class="temp">{{forecast.current.temp_c}}</p>
     <p class="condition">{{forecast.current.condition.text}}</p>
-    <p class="h-l">H:{{forecast.forecast.forecastday[0].day.mintemp_c}} L:{{forecast.forecast.forecastday[0].day.mintemp_c}}</p>
-</div>
+    <p class="h-l">H:{{forecast.forecast.forecastday[0].day.maxtemp_c}}
+      L:{{forecast.forecast.forecastday[0].day.mintemp_c}}</p>
+  </div>
 
-<div class="alert text-center">
-    <p>alert</p>
-</div>
-  
-<div class="container">
-  <div class="row">
-    <div class="col-sm-8">
-    <div class="row hour" id="astro">
-        <div class = "box" >
+  <div class="alert text-center" *ngIf="alert!='no alerts'">
+    <p>{{alert}}</p>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="row hour" id="astro">
+          <div class="box">
             <p>HOURLY FORECAST</p>
 
+          </div>
         </div>
-    </div>
-    <div class="row" id="kara">
-     <div class="col-sm-7" id="forcast" >
-        <div class = "box forcast">
-            <p>10-DAY FORECAST</p>
-        </div>
-    </div>
-     <div class="col-sm-5">
+        <div class="row" id="kara">
+          <div class="col-sm-7" id="forcast">
+            <div class="box forcast">
+              <p>10-DAY FORECAST</p>
+            </div>
+          </div>
+          <div class="col-sm-5">
             <div class="row air" id="astro">
-                <div class = "box">  
-                    <p>AIR QUALITY</p>
+              <div class="box">
+                <p>AIR QUALITY</p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="box" id="visibility">
+                  <p>FEELS LIKE</p>
                 </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="box" id="visibility">
+                  <p>HUMIDITY</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="box" id="visibility">
+                  <p>UV INDEX</p>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="box" id="visibility">
+                  <p>PRESSURE</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
-      
-      <div class="row">
-      <div class="col-sm-6">
-        <div class = "box" id="visibility">
-            <p>FEELS LIKE</p>
-         </div>
-      </div>
-      <div class="col-sm-6">
-        <div class = "box" id="visibility">
-            <p>HUMIDITY</p>
-         </div>
-      </div>
-      </div>
-      
-      <div class="row">
-      <div class="col-sm-6">
-        <div class = "box" id="visibility">
-            <p>UV INDEX</p>
-         </div>
-      </div>
-      <div class="col-sm-6">
-        <div class = "box" id="visibility">
-            <p>PRESSURE</p>
-         </div>
-      </div>
-      </div>
-      
-    </div>
-    </div>
-    </div>
-    <div class="col-sm-4">
-    
-    <div class="row astro2" id="astro">
-        <div class = "box" >
+      <div class="col-sm-4">
+
+        <div class="row astro2" id="astro">
+          <div class="box">
             <p>ASTRO FORECAST</p>
+          </div>
         </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="box" id="visibility">
+              <p>VISIBILITY</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="box" id="visibility">
+              <p>PRECEPATION</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="box" id="visibility">
+              <p>WIND</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="box" id="visibility">
+              <p>zxx</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
     </div>
-    
-    <div class="row">
-      <div class="col-sm-6">
-        <div class = "box" id="visibility">
-           <p>VISIBILITY</p>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class = "box" id="visibility">
-            <p>PRECEPATION</p>
-        </div>
-      </div>
-      </div>
-      
-      <div class="row">
-      <div class="col-sm-6">
-        <div class = "box" id="visibility">
-            <p>WIND</p>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class = "box" id="visibility">
-            <p>zxx</p>
-        </div>
-      </div>
-      </div>
-    
-    </div>
-    
-    
-    
   </div>
-</div>
 
 </body>
+
 </html>
