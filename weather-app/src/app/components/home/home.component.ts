@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { WeatherService } from './weather.service';
-import { Forecast } from './models/weather';
+import { Forecast, Forecastday } from './models/weather';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   
   forecast: Forecast = {} as Forecast;
   hasLoaded: boolean = false;
+  chosenDay: Forecastday = {} as Forecastday;
 
   constructor(private weatherService: WeatherService) { }
 
@@ -19,13 +20,17 @@ export class HomeComponent implements OnInit {
     this.hasLoaded = false;
     this.getForecast();
     this.hasLoaded = true;
+    this.setHourly();
   }
 
   getForecast() {
     this.weatherService.getForecast('Belgrade').subscribe((response) => {
       this.forecast = response;
-      console.log(response);
-      console.log(this.forecast);
+      this.chosenDay = this.forecast.forecast.forecastday[0];
     });
+  }
+
+  setHourly(){
+    
   }
 }

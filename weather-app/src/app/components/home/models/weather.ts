@@ -152,6 +152,6 @@ export interface Alert {
 export interface Forecast {
   location: Location;
   current: Current;
-  forecast: Forecastday[];
+  forecast: {forecastday: Forecastday[]};
   alerts: Alert[];
 }

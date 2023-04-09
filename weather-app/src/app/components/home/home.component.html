@@ -15,7 +15,7 @@
     <p class="city">{{forecast.location.name}}</p>
     <p class="temp">{{forecast.current.temp_c}}</p>
     <p class="condition">{{forecast.current.condition.text}}</p>
-    <p class="h-l">H:{{forecast.forecast[0].date}} L:{{forecast.forecast[0].day.mintemp_c}}</p>
+    <p class="h-l">H:{{forecast.forecast.forecastday[0].day.mintemp_c}} L:{{forecast.forecast.forecastday[0].day.mintemp_c}}</p>
 </div>
 
 <div class="alert text-center">
@@ -28,6 +28,7 @@
     <div class="row hour" id="astro">
         <div class = "box" >
             <p>HOURLY FORECAST</p>
+
         </div>
     </div>
     <div class="row" id="kara">
