@@ -11,16 +11,21 @@ import { Forecast } from './models/weather';
 export class HomeComponent implements OnInit {
   
   forecast: Forecast = {} as Forecast;
+  hasLoaded: boolean = false;
 
   constructor(private weatherService: WeatherService) { }
 
   ngOnInit(): void {
+    this.hasLoaded = false;
     this.getForecast();
+    this.hasLoaded = true;
   }
 
   getForecast() {
-    this.weatherService.getForecast('kara').subscribe((response) => {
+    this.weatherService.getForecast('Belgrade').subscribe((response) => {
       this.forecast = response;
+      console.log(response);
+      console.log(this.forecast);
     });
   }
 }
