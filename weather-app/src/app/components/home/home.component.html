@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700&display=swap">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body *ngIf="hasLoaded && hasLoadedHistory">
+
+  <div class="text-center">
+    <p class="city">{{forecast.location.name}}</p>
+    <p class="temp">{{forecast.current.temp_c}}</p>
+    <p class="condition">{{forecast.current.condition.text}}</p>
+    <p class="h-l">H:{{forecast.forecast.forecastday[0].day.maxtemp_c}}
+      L:{{forecast.forecast.forecastday[0].day.mintemp_c}}</p>
+  </div>
+
+  <div class="alert text-center" *ngIf="alert!='no alerts'">
+    <p>{{alert}}</p>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="row hour" id="astro">
+          <div class="box">
+            <p>HOURLY FORECAST</p>
+
+          </div>
+        </div>
+        <div class="row" id="kara">
+          <div class="col-sm-7" id="forcast">
+            <div class="box forcast" >
+              <p>10-DAY FORECAST</p>
+              <div class="row" *ngFor="let forecast of forecastHistory.forecast.forecastday">
+                <p>{{forecast.date}}</p>
+                <img src="{{forecast.day.condition.icon}}">
+                <p>min: {{forecast.day.mintemp_c}}</p>
+                <p>max: {{forecast.day.maxtemp_c}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-5">
+            <div class="row air" id="astro">
+              <div class="box">
+                <p>AIR QUALITY</p>
+                <div id="air-quality">
+                  <p>CO2: {{forecast.current.air_quality.co.toFixed(2)}}</p>
+                  <p>NO2: {{forecast.current.air_quality.no2.toFixed(2)}}</p>
+                  <p>O3: {{forecast.current.air_quality.o3.toFixed(2)}}</p>
+                  <p>PM2.5: {{forecast.current.air_quality.pm2_5.toFixed(2)}}</p>
+                  <p>PM10: {{forecast.current.air_quality.pm10.toFixed(2)}}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="box" id="visibility">
+                  <p>FEELS LIKE</p>
+                  <p class="text-center num">{{forecast.current.feelslike_c}}</p>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="box" id="visibility">
+                  <p>HUMIDITY</p>
+                  <p class="text-center num">{{forecast.current.humidity}}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="box" id="visibility">
+                  <p>UV INDEX</p>
+                  <p class="text-center num">{{forecast.current.uv}}</p>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="box" id="visibility">
+                  <p>PRESSURE</p>
+                  <p class="text-center num">{{forecast.current.pressure_mb}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+
+        <div class="row astro2" id="astro">
+          <div class="box">
+            <p>ASTRO FORECAST</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="box" id="visibility">
+              <p>VISIBILITY</p>
+              <p class="text-center num">{{forecast.current.vis_km}}</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="box" id="visibility">
+              <p>PRECEPATION</p>
+              <p class="text-center num">{{forecast.current.precip_mm}}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="box" id="visibility">
+              <p>WIND</p>
+              <div class="kara">
+                <div class="compass">
+                  <div class="direction">
+                    <p>{{forecast.current.wind_dir}}<span>{{forecast.current.wind_kph}} kph</span></p>
+                  </div>
+                  <div class="arrow arrow {{forecast.current.wind_dir}}"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="box" id="visibility">
+              <p>zxx</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
