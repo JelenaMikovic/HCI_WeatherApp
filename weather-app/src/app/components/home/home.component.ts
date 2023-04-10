@@ -41,12 +41,12 @@ export class HomeComponent implements OnInit {
       this.forecastHistory = response;
       this.hasLoadedHistory = true;
       console.log("ISTORIJAA")
+      console.log(response);
       console.log(this.forecastHistory);
     })
   }
 
   setAlert() {
-    console.log(this.forecast.alerts.alert)
     if (this.forecast.alerts.alert.length > 0) {
       for (let i=0; i<this.forecast.alerts.alert.length; i++){
         const effective = new Date(this.forecast.alerts.alert[i].effective);
@@ -54,7 +54,6 @@ export class HomeComponent implements OnInit {
         const today = new Date();
         if (today <= expires && today >= effective) {
           this.alert = this.forecast.alerts.alert[i].headline;
-
           return
         }
       }
@@ -62,21 +61,29 @@ export class HomeComponent implements OnInit {
     this.alert = "no alerts"
   }
 
-  onHourClick(hour: Hour){
-    console.log('Clicked on hour:', hour);
-    this.display.airQuality = hour.air_quality;
-    this.display.feelsLike = hour.feelslike_c;
-    this.display.humidity = hour.humidity;
-    this.display.visibility = hour.vis_km;
-    this.display.precipation = hour.precip_in;
-    this.display.uv = hour.uv;
-    this.display.wind = {direction: hour.wind_dir,
-      speed: hour.wind_kph}
+  onHourClick(index: number){
+    console.log('Clicked on hour:', index);
+    const hour = this.display.hourlyForecast.at(index);
+    if (hour) {
+      this.display.airQuality = hour.air_quality;
+      this.display.feelsLike = hour.feelslike_c;
+      this.display.humidity = hour.humidity;
+      this.display.visibility = hour.vis_km;
+      this.display.precipation = hour.precip_in;
+      this.display.uv = hour.uv;
+      this.display.wind = {direction: hour.wind_dir, speed: hour.wind_kph};
+    }
   }
 
-  onDayClick(hour: Hour){
+  onDayClick(index: number){
+    console.log('Clicked on hour:', this.forecast.forecast.forecastday.at(index));
 
   }
+
+  historyClicked(index: number) {
+    console.log(this.forecastHistory.forecast.forecastday.at(index));
+  }
+
 
   setDisplay(){
     this.display.hourlyForecast = this.today.hour;
@@ -90,6 +97,13 @@ export class HomeComponent implements OnInit {
     this.display.uv = this.forecast.current.uv;
     this.display.wind = {direction: this.forecast.current.wind_dir,
     speed: this.forecast.current.wind_kph}
+  }
+
+  getDayOfWeek(dateString: string) {
+    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const date = new Date(dateString);
+    const dayOfWeekIndex = date.getDay();
+    return daysOfWeek[dayOfWeekIndex];
   }
 }
 

@@ -34,42 +34,40 @@
             <p>HOURLY FORECAST</p>
             <section class="carousel" aria-label="Gallery">
               <ol class="carousel__viewport">
-                <li id="carousel__slide1"
-                    tabindex="0"
-                    class="carousel__slide">
+                <li id="carousel__slide1" tabindex="0" class="carousel__slide">
 
-                    <div class="col-md-1" *ngFor="let hour of display.hourlyForecast.slice(0,12)" (click)="onHourClick(hour)">
+                  <div class="col-md-1" *ngFor="let hour of display.hourlyForecast.slice(0,12) ; let i = index;">
+                    <div (click)="onHourClick(i)">
+
                       <p class="text-center temphour">{{hour.time.substring(11, 16)}}</p>
                       <div class="kara">
-                      <img src="{{hour.condition.icon}}" class="houricon">
+                        <img src="{{hour.condition.icon}}" class="houricon">
+                      </div>
+                      <p class="text-center temphour">{{hour.temp_c}}</p>
                     </div>
-                    <p class="text-center temphour">{{hour.temp_c}}</p>
-                    </div>
-                   
+                  </div>
+
                   <div class="carousel__snapper">
-                    <a href="#carousel__slide2"
-                       class="carousel__prev">Go to last slide</a>
-                    <a href="#carousel__slide2"
-                       class="carousel__next">Go to next slide</a>
+                    <a href="#carousel__slide2" class="carousel__prev">Go to last slide</a>
+                    <a href="#carousel__slide2" class="carousel__next">Go to next slide</a>
                   </div>
                 </li>
-                <li id="carousel__slide2"
-                    tabindex="0"
-                    class="carousel__slide">
+                <li id="carousel__slide2" tabindex="0" class="carousel__slide">
 
-                    <div class="col-md-1" *ngFor="let hour of display.hourlyForecast.slice(12,24)" (click)="onHourClick(hour)">
+                  <div class="col-md-1" *ngFor="let hour of display.hourlyForecast.slice(12,24); let i = index;">
+                    <div (click)="onHourClick(i)">
+
                       <p class="text-center temphour">{{hour.time.substring(11, 16)}}</p>
                       <div class="kara">
-                      <img src="{{hour.condition.icon}}" class="houricon">
+                        <img src="{{hour.condition.icon}}" class="houricon">
+                      </div>
+                      <p class="text-center temphour">{{hour.temp_c}}</p>
                     </div>
-                    <p class="text-center temphour">{{hour.temp_c}}</p>
-                    </div>
+                  </div>
 
                   <div class="carousel__snapper"></div>
-                  <a href="#carousel__slide1"
-                     class="carousel__prev">Go to previous slide</a>
-                  <a href="#carousel__slide1"
-                     class="carousel__next">Go to next slide</a>
+                  <a href="#carousel__slide1" class="carousel__prev">Go to previous slide</a>
+                  <a href="#carousel__slide1" class="carousel__next">Go to next slide</a>
                 </li>
               </ol>
 
@@ -78,13 +76,54 @@
         </div>
         <div class="row" id="kara">
           <div class="col-sm-7" id="forcast">
-            <div class="box forcast" >
+            <div class="box forcast">
               <p>10-DAY FORECAST</p>
-              <div class="row" *ngFor="let forecast of forecastHistory.forecast.forecastday">
-                <p>{{forecast.date}}</p>
-                <img src="{{forecast.day.condition.icon}}">
-                <p>min: {{forecast.day.mintemp_c}}</p>
-                <p>max: {{forecast.day.maxtemp_c}}</p>
+              <hr class="row seperate">
+              <div class="row" *ngFor="let forecast of forecastHistory.forecast.forecastday; let i = index;">
+                <div (click)="historyClicked(i)">
+                  <div class="col-sm-2 dayOfWeek">
+                    <p class="col-sm-7">{{getDayOfWeek(forecast.date.substring(0, 10)).substring(0, 3)}}.</p>
+                    <p class="tempOfWeek col-sm-1">{{forecast.date.substring(8, 10)}} </p>
+                  </div>
+
+                  <div class="col-sm-7 dayOfWeek">
+                    <div class="col-sm-3">
+                      <img class="dayOfWeekIcon" src="{{forecast.day.condition.icon}}">
+                    </div>
+                    <div class="col-sm-9">
+                      <p>{{forecast.day.condition.text}}</p>
+                    </div>
+                  </div>
+                  <div class="col-sm-3 dayOfWeek">
+                    <p class="col-sm-3 tempOfWeek">{{forecast.day.mintemp_c}}</p>
+                    <hr class="col-sm-5 line">
+                    <p class="col-sm-4">{{forecast.day.maxtemp_c}}</p>
+                  </div>
+                </div>
+                <hr class="row seperate">
+              </div>
+              <div class="row" *ngFor="let forecast of forecast.forecast.forecastday; let i = index;">
+                <div (click)="onDayClick(i)">
+                  <div class="col-sm-2 dayOfWeek">
+                    <p class="col-sm-7">{{getDayOfWeek(forecast.date.substring(0, 10)).substring(0, 3)}}.</p>
+                    <p class="tempOfWeek col-sm-1">{{forecast.date.substring(8, 10)}} </p>
+                  </div>
+
+                  <div class="col-sm-7 dayOfWeek">
+                    <div class="col-sm-3">
+                      <img class="dayOfWeekIcon" src="{{forecast.day.condition.icon}}">
+                    </div>
+                    <div class="col-sm-9">
+                      <p>{{forecast.day.condition.text}}</p>
+                    </div>
+                  </div>
+                  <div class="col-sm-3 dayOfWeek">
+                    <p class="col-sm-3 tempOfWeek">{{forecast.day.mintemp_c}}</p>
+                    <hr class="col-sm-5 line">
+                    <p class="col-sm-4">{{forecast.day.maxtemp_c}}</p>
+                  </div>
+                </div>
+                <hr class="row seperate">
               </div>
             </div>
           </div>

@@ -477,3 +477,38 @@ h3{
   margin: 1px;
 
 }
+
+.dayOfWeek{
+  padding: 0;
+  font-size: 12px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.dayOfWeekIcon{
+  height: 4vh;
+  width: 4vh;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.tempOfWeek{
+  padding: 0;
+  font-size: 12px;
+  text-align: right;
+}
+
+.line{
+  margin: 5px;
+  border: none;
+  border-top: 3px solid #ffffff;
+}
+
+.seperate{
+  border: none;
+  border-top: 2px solid #ffffff;
+}
