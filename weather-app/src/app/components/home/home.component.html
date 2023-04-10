@@ -38,7 +38,7 @@
                     tabindex="0"
                     class="carousel__slide">
 
-                    <div class="col-sm-2" *ngFor="let hour of chosenDay.hour.slice(0,6)">
+                    <div class="col-md-1" *ngFor="let hour of chosenDay.hour.slice(0,12)">
                       <p class="text-center temphour">{{hour.time.substring(11, 16)}}</p>
                       <div class="kara">
                       <img src="{{hour.condition.icon}}" class="houricon">
@@ -47,7 +47,7 @@
                     </div>
                    
                   <div class="carousel__snapper">
-                    <a href="#carousel__slide4"
+                    <a href="#carousel__slide2"
                        class="carousel__prev">Go to last slide</a>
                     <a href="#carousel__slide2"
                        class="carousel__next">Go to next slide</a>
@@ -57,43 +57,19 @@
                     tabindex="0"
                     class="carousel__slide">
 
-                    <div class="col-sm-2" *ngFor="let hour of chosenDay.hour.slice(6,12)">
-                      <p>{{hour.time.substring(11, 16)}}</p>
+                    <div class="col-md-1" *ngFor="let hour of chosenDay.hour.slice(12,24)">
+                      <p class="text-center temphour">{{hour.time.substring(11, 16)}}</p>
+                      <div class="kara">
+                      <img src="{{hour.condition.icon}}" class="houricon">
+                    </div>
+                    <p class="text-center temphour">{{hour.temp_c}}</p>
                     </div>
 
                   <div class="carousel__snapper"></div>
                   <a href="#carousel__slide1"
                      class="carousel__prev">Go to previous slide</a>
-                  <a href="#carousel__slide3"
-                     class="carousel__next">Go to next slide</a>
-                </li>
-                <li id="carousel__slide3"
-                    tabindex="0"
-                    class="carousel__slide">
-
-                    <div class="col-sm-2" *ngFor="let hour of chosenDay.hour.slice(12,18)">
-                      <p>{{hour.time.substring(11, 16)}}</p>
-                    </div>
-
-                  <div class="carousel__snapper"></div>
-                  <a href="#carousel__slide2"
-                     class="carousel__prev">Go to previous slide</a>
-                  <a href="#carousel__slide4"
-                     class="carousel__next">Go to next slide</a>
-                </li>
-                <li id="carousel__slide4"
-                    tabindex="0"
-                    class="carousel__slide">
-
-                    <div class="col-sm-2" *ngFor="let hour of chosenDay.hour.slice(18,24)">
-                      <p>{{hour.time.substring(11, 16)}}</p>
-                    </div>
-
-                  <div class="carousel__snapper"></div>
-                  <a href="#carousel__slide3"
-                     class="carousel__prev">Go to previous slide</a>
                   <a href="#carousel__slide1"
-                     class="carousel__next">Go to first slide</a>
+                     class="carousel__next">Go to next slide</a>
                 </li>
               </ol>
 
