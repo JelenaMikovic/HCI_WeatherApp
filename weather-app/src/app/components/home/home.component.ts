@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { WeatherService } from './weather.service';
-import { Forecast, Forecastday } from './models/weather';
+import { Forecast, ForecastHistory, Forecastday } from './models/weather';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +11,7 @@ import { Forecast, Forecastday } from './models/weather';
 export class HomeComponent implements OnInit {
 
   forecast: Forecast = {} as Forecast;
-  forecastHistory: Forecast = {} as Forecast;
+  forecastHistory: ForecastHistory = {} as ForecastHistory;
   hasLoaded: boolean = false;
   hasLoadedHistory: boolean = false;
   chosenDay: Forecastday = {} as Forecastday;

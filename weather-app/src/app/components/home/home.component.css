@@ -299,7 +299,16 @@ h3{
     list-style: none;
     margin: 0;
     padding: 0;
+    text-indent: 0;
+    height: 10vh;
   }
+
+  ol{
+    margin: 0;
+    padding: 0;
+    list-style-type: decimal;
+  }
+  
   
   .carousel {
     position: relative;
@@ -314,9 +323,10 @@ h3{
     right: 0;
     bottom: 0;
     left: 0;
+    margin: 0;
+    padding: 0;
     display: flex;
     overflow-x: scroll;
-    counter-reset: item;
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
   }
@@ -444,6 +454,14 @@ h3{
   .houricon{
     width: 4.5vh;
     height: 4.5vh;
+    margin: 0;
+    padding: 0;
+  }
+
+  .temphour{
+    font-size: 11px;
+    margin: 0;
+    padding: 0;
   }
 @media screen and (max-width: 768px) {
     .col-sm-4 {
