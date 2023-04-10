@@ -19,10 +19,8 @@ export class HomeComponent implements OnInit {
   display: Display = {} as Display;
   latitude: number = 0;
   longitude: number = 0;
-  constructor(private weatherService: WeatherService) {
   showCurrent: boolean = true;
-
-  }
+  constructor(private weatherService: WeatherService) {}
 
   ngOnInit(): void {
     if (navigator.geolocation) {
@@ -30,20 +28,30 @@ export class HomeComponent implements OnInit {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
         this.hasLoaded = false;
-        this.getForecast();
-        this.getForecastHistory();
+        this.weatherService.getLocation(this.latitude,this.longitude).subscribe((response) => {
+          console.log(response)
+          this.getForecast(response[0].name);
+          this.getForecastHistory(response[0].name);
+        });
       });
     } else {
       console.log('Geolocation is not supported by this browser.');
       this.hasLoaded = false;
-      this.getForecast();
-      this.getForecastHistory();
+      this.getForecast('Novi Sad');
+      this.getForecastHistory('Novi Sad');
     }
 
   }
 
-  getForecast() {
-    this.weatherService.getForecast('Belgrade').subscribe((response) => {
+  onLiClick(city: string) {
+    console.log(city);
+    this.getForecast(city);
+    this.getForecastHistory(city);
+    // Call your function here
+  }
+
+  getForecast(city:string) {
+    this.weatherService.getForecast(city).subscribe((response) => {
       this.forecast = response;
       this.today = this.forecast.forecast.forecastday[0];
       this.setAlert();
@@ -52,8 +60,8 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  getForecastHistory(){
-    this.weatherService.getForecastHistory('Belgrade').subscribe((response) =>{
+  getForecastHistory(city:string){
+    this.weatherService.getForecastHistory(city).subscribe((response) =>{
       this.forecastHistory = response;
       this.hasLoadedHistory = true;
       console.log("ISTORIJAA")
@@ -155,14 +163,14 @@ export class HomeComponent implements OnInit {
   calculateAqi(pm25: number): number {
     const breakpoints = [0, 12.1, 35.5, 55.5, 150.5, 250.5, 350.5, 500.5];
     const aqiRange = [0, 50, 100, 150, 200, 300, 400, 500];
-    
+
     let i: number;
     for (i = 0; i < breakpoints.length; i++) {
       if (pm25 <= breakpoints[i]) {
         break;
       }
     }
-    
+
     if (i === 1) {
       return Math.round(((aqiRange[i] - aqiRange[i - 1]) / (breakpoints[i] - breakpoints[i - 1])) * (pm25 - breakpoints[i - 1]) + aqiRange[i - 1]);
     } else {
@@ -172,18 +180,18 @@ export class HomeComponent implements OnInit {
 
   co2ToWidth(co2: number): string {
     const maxCo2 = 5000;
-    const minCo2 = 0; 
-    const maxWidth = 100; 
+    const minCo2 = 0;
+    const maxWidth = 100;
 
     const width = (co2 - minCo2) * maxWidth / (maxCo2 - minCo2);
-    
+
     return `${width}%`;
   }
 
   getNo2ProgressBarWidth(): string {
     const no2 = this.display.airQuality.no2;
     let width: number;
-    
+
     if (no2 <= 53) {
       width = no2 / 53 * 25;
     } else if (no2 <= 100) {
@@ -197,7 +205,7 @@ export class HomeComponent implements OnInit {
     } else {
       width = 100;
     }
-  
+
     return `${width}%`;
   }
 

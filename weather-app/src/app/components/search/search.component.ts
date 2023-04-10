@@ -1,4 +1,4 @@
-import {Component, HostListener} from '@angular/core';
+import {Component, EventEmitter, HostListener, Output} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -12,11 +12,10 @@ declare var google: any;
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
-
-  constructor(private http: HttpClient) { }
-
   cities: any[] = [];
   showDropdown = false;
+  constructor(private http: HttpClient) { }
+  @Output() liClick = new EventEmitter<void>();
   onSearch(event: any): void {
     const query = event.target.value;
     if (query.length > 2) {
@@ -36,8 +35,9 @@ export class SearchComponent {
     }
   }
 
-  onCitySelect(city: any): void {
-    console.log(city); // do something with the selected city
+  onCitySelect(index: number): void {
+    console.log(index); // do something with the selected city
+    this.liClick.emit();
     this.showDropdown = false;
   }
 

@@ -9,6 +9,16 @@ export interface Location {
   localtime: string;
 }
 
+export interface SearchLocation{
+  id: number;
+  name: string;
+  region: string;
+  country: string;
+  lat: number;
+  lon: number;
+  url: string;
+}
+
 
 export interface Condition {
   text: string;
