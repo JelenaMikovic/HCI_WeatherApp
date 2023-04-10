@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { WeatherService } from './weather.service';
 import { AirQuality, Astro, Forecast, ForecastHistory, Forecastday, Hour } from './models/weather';
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,10 @@ export class HomeComponent implements OnInit {
   latitude: number = 0;
   longitude: number = 0;
   showCurrent: boolean = true;
-  constructor(private weatherService: WeatherService) {}
+  cities: any[] = [];
+  showDropdown = false;
+  myInput = document.getElementById('searchField') as HTMLInputElement;
+  constructor(private weatherService: WeatherService, private http: HttpClient) {}
 
   ngOnInit(): void {
     if (navigator.geolocation) {
@@ -43,11 +47,34 @@ export class HomeComponent implements OnInit {
 
   }
 
-  onLiClick(city: string) {
-    console.log(city);
-    this.getForecast(city);
-    this.getForecastHistory(city);
-    // Call your function here
+  onCitySelect(index: number): void {
+    console.log(index); // do something with the selected city
+    //this.liClick.emit();
+    this.getForecast(this.cities[index].name);
+    this.getForecastHistory(this.cities[index].name);
+    document.getElementById("searchField");
+    this.showDropdown = false;
+    this.myInput.value = "";
+    this.myInput.placeholder = 'Search for a city';
+  }
+
+  onSearch(event: any): void {
+    const query = event.target.value;
+    if (query.length > 2) {
+      const apiUrl = `http://api.weatherapi.com/v1/search.json?key=c0e9367d1f0b4237804175441230804&q=${query}`;
+      this.http.get(apiUrl).pipe(
+        map((res: any) => res.map((city: any) => ({ name: city.name, region: city.region, country: city.country })) )
+      ).subscribe((cities: any[]) => {
+        this.cities = cities;
+        this.showDropdown = true;
+      });
+    } else {
+      this.cities = [];
+      this.showDropdown = false;
+    }
+    if (!query) {
+      this.showDropdown = false;
+    }
   }
 
   getForecast(city:string) {
@@ -244,6 +271,8 @@ export class HomeComponent implements OnInit {
     }
   }
 }
+
+
 
 interface Display{
   hourlyForecast: Hour[];

@@ -514,7 +514,7 @@ h3{
   border-top: 2px solid #ffffff;
 }
 
-app-search {
+.search {
   position: absolute;
   top: 0;
   left: 0;
@@ -581,7 +581,7 @@ div[role="progressbar"] {
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: 
+  background:
     radial-gradient(closest-side, white 80%, transparent 0 99.9%, rgb(86, 86, 86) 0),
     conic-gradient(var(--fg) calc(var(--pgPercentage)/5 * 1%), var(--bg) 0)
     ;
@@ -593,3 +593,35 @@ div[role="progressbar"]::before {
   counter-reset: percentage var(--value);
   content: counter(percentage);
 }
+
+/*------ SEARCH*/
+.search ul{
+  background-color: rgba(0, 0, 0, 0.15);
+  color: white;
+  width: fit-content;
+  list-style: none;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+input{
+  background-color: rgba(0, 0, 0, 0.15);
+  color: white;
+  border: 0;
+  border-radius: 2px;
+}
+
+input::placeholder {
+  color: white;
+}
+
+.search li{
+  height: fit-content;
+  font-size: 14px;
+}
+
+.search li:hover{
+  font-size: 14px;
+  background-color: #ffffff3f;
+}
+
