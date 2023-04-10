@@ -8,6 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700&display=swap">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
@@ -210,11 +211,93 @@
             <p *ngIf="showCurrent == false">AVG. AIR QUALITY</p>
             <p *ngIf="showCurrent">AIR QUALITY</p>
             <div id="air-quality">
-              <p>CO2: {{display.airQuality.co.toFixed(2)}}</p>
-              <p>NO2: {{display.airQuality.no2.toFixed(2)}}</p>
-              <p>O3: {{display.airQuality.o3.toFixed(2)}}</p>
-              <p>PM2.5: {{display.airQuality.pm2_5.toFixed(2)}}</p>
-              <p>PM10: {{display.airQuality.pm10.toFixed(2)}}</p>
+              <div class="row kara">
+                <div role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="500" [style.--value]="calculateAqi(display.airQuality.pm2_5)"></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="row">
+                    <p class="element">CO2:</p>
+                  </div>
+                  <div class="row">
+                    <p class="dayOfWeek"> {{display.airQuality.co.toFixed(2)}}</p>
+                  </div>
+                  <div>
+                    <div class="w3-light-grey w3-round-xlarge" style="height:5px">
+                      <div class="w3-container w3-yellow w3-round-xlarge"  [ngStyle]="{ 'width': co2ToWidth(display.airQuality.co) }"
+                      style="height:5px"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="row">
+                    <p class="element">NO2:</p>
+                  </div>
+                  <div class="row">
+                    <p class="dayOfWeek"> {{display.airQuality.no2.toFixed(2)}}</p>
+                  </div>
+                  <div>
+                    <div class="w3-light-grey w3-round-xlarge" style="height:5px">
+                      <div class="w3-container w3-blue w3-round-xlarge" [ngStyle]="{ 'width': getNo2ProgressBarWidth() }" style="height:5px"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="row">
+                    <p class="element">SO2:</p>
+                  </div>
+                  <div class="row">
+                    <p class="dayOfWeek"> {{display.airQuality.so2.toFixed(2)}}</p>
+                  </div>
+                  <div>
+                    <div class="w3-light-grey w3-round-xlarge" style="height:5px">
+                      <div class="w3-container w3-red w3-round-xlarge" [ngStyle]="{ 'width': getSO2Width(display.airQuality.so2) }" style="height:5px"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="row">
+                    <p class="element">PM2.5:</p>
+                  </div>
+                  <div class="row">
+                    <p class="dayOfWeek"> {{display.airQuality.pm2_5.toFixed(2)}}</p>
+                  </div>
+                  <div>
+                    <div class="w3-light-grey w3-round-xlarge" style="height:5px">
+                      <div class="w3-container w3-orange w3-round-xlarge" [ngStyle]="{ 'width': getPM2_5Width(display.airQuality.pm2_5) }" style="height:5px"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="row">
+                    <p class="element">PM10:</p>
+                  </div>
+                  <div class="row">
+                    <p class="dayOfWeek"> {{display.airQuality.pm10.toFixed(2)}}</p>
+                  </div>
+                  <div>
+                    <div class="w3-light-grey w3-round-xlarge" style="height:5px">
+                      <div class="w3-container w3-purple w3-round-xlarge" [ngStyle]="{ 'width': getPm10Width(display.airQuality.pm10) }" style="height:5px"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="row">
+                    <p class="element">O3:</p>
+                  </div>
+                  <div class="row">
+                    <p class="dayOfWeek"> {{display.airQuality.o3.toFixed(2)}}</p>
+                  </div>
+                  <div>
+                    <div class="w3-light-grey w3-round-xlarge" style="height:5px">
+                      <div class="w3-container w3-green w3-round-xlarge" [ngStyle]="{ 'width': getO3Width(display.airQuality.o3) }" style="height:5px"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
