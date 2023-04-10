@@ -512,3 +512,7 @@ h3{
   border: none;
   border-top: 2px solid #ffffff;
 }
+
+.dayOfWeekRow:hover {
+  background-color: #ffffff3f;
+}

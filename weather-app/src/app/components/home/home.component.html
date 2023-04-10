@@ -79,7 +79,7 @@
             <div class="box forcast">
               <p>10-DAY FORECAST</p>
               <hr class="row seperate">
-              <div class="row" *ngFor="let forecast of forecastHistory.forecast.forecastday; let i = index;">
+              <div class="row dayOfWeekRow" *ngFor="let forecast of forecastHistory.forecast.forecastday; let i = index;">
                 <div (click)="historyClicked(i)">
                   <div class="col-sm-2 dayOfWeek">
                     <p class="col-sm-7">{{getDayOfWeek(forecast.date.substring(0, 10)).substring(0, 3)}}.</p>
@@ -102,7 +102,7 @@
                 </div>
                 <hr class="row seperate">
               </div>
-              <div class="row" *ngFor="let forecast of forecast.forecast.forecastday; let i = index;">
+              <div class="row dayOfWeekRow" *ngFor="let forecast of forecast.forecast.forecastday; let i = index;">
                 <div (click)="onDayClick(i)">
                   <div class="col-sm-2 dayOfWeek">
                     <ng-container *ngIf="forecast.date === getCurrentDate()">
