@@ -86,6 +86,7 @@ export class HomeComponent implements OnInit {
     this.display.humidity = this.forecast.current.humidity;
     this.display.visibility = this.forecast.current.vis_km;
     this.display.precipation = this.forecast.current.precip_in;
+    this.display.pressure = this.forecast.current.pressure_in; 
     this.display.uv = this.forecast.current.uv;
     this.display.wind = {direction: this.forecast.current.wind_dir,
     speed: this.forecast.current.wind_kph}
