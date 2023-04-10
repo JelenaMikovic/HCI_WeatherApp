@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import {HttpClient} from "@angular/common/http";
 
 declare var google: any;
 
@@ -11,30 +12,39 @@ declare var google: any;
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
-  autocompleteService = new google.maps.places.AutocompleteService();
-  searchInput: string = '';
-  predictions: { description: string, place_id: string }[] = [];
 
-  autocomplete() {
-    if (this.searchInput.length > 0) {
-      this.autocompleteService.getPlacePredictions({ input: this.searchInput },
-        (predictions: any[], status: string) => {
-          if (status === google.maps.places.PlacesServiceStatus.OK) {
-            this.predictions = predictions.map(prediction => {
-              return { description: prediction.description, place_id: prediction.place_id };
-            });
-          } else {
-            this.predictions = [];
-          }
-        });
+  constructor(private http: HttpClient) { }
+
+  cities: any[] = [];
+  showDropdown = false;
+  onSearch(event: any): void {
+    const query = event.target.value;
+    if (query.length > 2) {
+      const apiUrl = `http://api.weatherapi.com/v1/search.json?key=c0e9367d1f0b4237804175441230804&q=${query}`;
+      this.http.get(apiUrl).pipe(
+        map((res: any) => res.map((city: any) => ({ name: city.name, region: city.region, country: city.country })) )
+      ).subscribe((cities: any[]) => {
+        this.cities = cities;
+        this.showDropdown = true;
+      });
     } else {
-      this.predictions = [];
+      this.cities = [];
+      this.showDropdown = false;
+    }
+    if (!query) {
+      this.showDropdown = false;
     }
   }
 
-  selectCity(prediction: { description: string, place_id: string }) {
-    this.searchInput = prediction.description;
-    this.predictions = [];
-    // do something with the selected city, e.g. navigate to a new page
+  onCitySelect(city: any): void {
+    console.log(city); // do something with the selected city
+    this.showDropdown = false;
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: any): void {
+    if (!event.target.closest('.dropdown') && this.showDropdown) {
+      this.showDropdown = false;
+    }
   }
 }

@@ -1,12 +1,10 @@
-<mat-form-field appearance="fill">
-  <input type="text"
-         placeholder="Enter a city"
-         matInput
-         [(ngModel)]="searchInput"
-         (input)="autocomplete()"
-         [matAutocomplete]="auto">
-  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-    <mat-option *ngFor="let prediction of predictions" (click)="selectCity(prediction)">{{ prediction.description }}
-    </mat-option>
-  </mat-autocomplete>
-</mat-form-field>
+<input type="text" placeholder="Search for a city" (input)="onSearch($event)" >
+<!--<mat-autocomplete #auto="matAutocomplete">-->
+<!--  <mat-option *ngFor="let city of cities" [value]="city.name">{{ city.name }}</mat-option>[matAutocomplete]="auto"-->
+<!--</mat-autocomplete>-->
+<div class="dropdown" *ngIf="showDropdown">
+  <ul>
+    <li *ngFor="let city of cities" (click)="onCitySelect(city)">{{ city.name }}, {{ city.region }}, {{ city.country }}</li>
+  </ul>
+</div>
+

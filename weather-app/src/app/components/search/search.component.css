@@ -1,0 +1,21 @@
+ul{
+  background-color: rgba(0, 0, 0, 0.15);
+  color: white;
+  width: fit-content;
+
+}
+
+input{
+  background-color: rgba(0, 0, 0, 0.15);
+  /*color: white;*/
+  border: 0;
+  border-radius: 2px;
+}
+
+input::placeholder {
+  color: white;
+}
+
+li:hover{
+  background-color: rgba(0, 0, 0, 0.15);
+}
