@@ -27,9 +27,4 @@ export class WeatherService{
     return this.http.get<Forecast>("http://api.weatherapi.com/v1/forecast.json?key=c0e9367d1f0b4237804175441230804&q=Belgrade&dt=2023-04-02&end_dt=2023-04-12");
   }
 
-  getForecastHistory(city:string, date:string): Observable<Forecast> {
-    const url = `${this.apiHost}/history.json?key=${this.key}&q=${city}&dt=${date}`;
-    return this.http.get<Forecast>(url);
-  }
-
 }
