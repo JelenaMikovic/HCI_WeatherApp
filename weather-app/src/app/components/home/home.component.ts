@@ -11,7 +11,9 @@ import { Forecast, Forecastday } from './models/weather';
 export class HomeComponent implements OnInit {
 
   forecast: Forecast = {} as Forecast;
+  forecastHistory: Forecast = {} as Forecast;
   hasLoaded: boolean = false;
+  hasLoadedHistory: boolean = false;
   chosenDay: Forecastday = {} as Forecastday;
   alert: string = "";
 
@@ -20,6 +22,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.hasLoaded = false;
     this.getForecast();
+    this.getForecastHistory();
   }
 
   getForecast() {
@@ -31,6 +34,15 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  getForecastHistory(){
+    this.weatherService.getForecastHistory('Belgrade').subscribe((response) =>{
+      this.forecastHistory = response;
+      this.hasLoadedHistory = true;
+      console.log("ISTORIJAA")
+      console.log(this.forecastHistory);
+    })
+  }
+
   setAlert() {
     console.log(this.forecast.alerts.alert)
     if (this.forecast.alerts.alert.length > 0) {
@@ -40,7 +52,7 @@ export class HomeComponent implements OnInit {
         const today = new Date();
         if (today <= expires && today >= effective) {
           this.alert = this.forecast.alerts.alert[i].headline;
-          
+
           return
         }
       }
