@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   today: Forecastday = {} as Forecastday;
   alert: string = "";
   display: Display = {} as Display;
+  showCurrent: boolean = true;
 
   constructor(private weatherService: WeatherService) { }
 
@@ -77,15 +78,37 @@ export class HomeComponent implements OnInit {
 
   onDayClick(index: number){
     console.log('Clicked on hour:', this.forecast.forecast.forecastday.at(index));
-
+    this.showCurrent = false;
+    this.display.humidity = this.forecast.forecast.forecastday[index].day.avghumidity;
+    this.display.hourlyForecast = this.forecast.forecast.forecastday[index].hour;
+    this.display.astroForecast = this.forecast.forecast.forecastday[index].astro;
+    this.display.airQuality = this.forecast.forecast.forecastday[index].day.air_quality;
+    this.display.visibility = this.forecast.forecast.forecastday[index].day.avgvis_km;
+    this.display.precipation = this.forecast.forecast.forecastday[index].day.totalprecip_in;
+    this.display.feelsLike = this.forecast.forecast.forecastday[index].day.avgtemp_c;
+    this.display.uv = this.forecast.forecast.forecastday[index].day.uv;
+    this.display.wind = {direction: this.forecast.current.wind_dir,
+    speed: this.forecast.forecast.forecastday[index].day.maxwind_kph}
   }
 
   historyClicked(index: number) {
     console.log(this.forecastHistory.forecast.forecastday.at(index));
+    this.showCurrent = false;
+    this.display.humidity = this.forecastHistory.forecast.forecastday[index].day.avghumidity;
+    this.display.hourlyForecast = this.forecastHistory.forecast.forecastday[index].hour;
+    this.display.astroForecast = this.forecastHistory.forecast.forecastday[index].astro;
+    //this.display.airQuality = this.forecastHistory.forecast.forecastday[index].day.air_quality;
+    this.display.visibility = this.forecastHistory.forecast.forecastday[index].day.avgvis_km;
+    this.display.precipation = this.forecastHistory.forecast.forecastday[index].day.totalprecip_in;
+    this.display.feelsLike = this.forecastHistory.forecast.forecastday[index].day.avgtemp_c;
+    this.display.uv = this.forecastHistory.forecast.forecastday[index].day.uv;
+    this.display.wind = {direction: this.forecast.current.wind_dir,
+    speed: this.forecastHistory.forecast.forecastday[index].day.maxwind_kph}
   }
 
 
   setDisplay(){
+    this.showCurrent = true;
     this.display.hourlyForecast = this.today.hour;
     this.display.astroForecast = this.today.astro;
     this.display.airQuality = this.forecast.current.air_quality;

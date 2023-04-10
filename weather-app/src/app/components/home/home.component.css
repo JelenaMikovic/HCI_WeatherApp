@@ -516,3 +516,24 @@ h3{
 .dayOfWeekRow:hover {
   background-color: #ffffff3f;
 }
+
+.show:hover{
+  background-color: #ffffff3f;
+}
+
+.astroImg{
+  width: 4vh;
+}
+
+.astroText{
+  padding-left: 3px;
+  font-size: 12px;
+  text-align: left;
+}
+
+.astroRow{
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
