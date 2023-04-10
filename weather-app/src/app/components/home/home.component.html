@@ -105,8 +105,14 @@
               <div class="row" *ngFor="let forecast of forecast.forecast.forecastday; let i = index;">
                 <div (click)="onDayClick(i)">
                   <div class="col-sm-2 dayOfWeek">
-                    <p class="col-sm-7">{{getDayOfWeek(forecast.date.substring(0, 10)).substring(0, 3)}}.</p>
-                    <p class="tempOfWeek col-sm-1">{{forecast.date.substring(8, 10)}} </p>
+                    <ng-container *ngIf="forecast.date === getCurrentDate()">
+                    <p class="col-sm-7">Today</p>
+                    <p class="tempOfWeek col-sm-1"></p>
+                    </ng-container>
+                    <ng-container *ngIf="forecast.date !== getCurrentDate()">
+                      <p class="col-sm-7">{{getDayOfWeek(forecast.date.substring(0, 10)).substring(0, 3)}}.</p>
+                      <p class="tempOfWeek col-sm-1">{{forecast.date.substring(8, 10)}} </p>
+                    </ng-container>
                   </div>
 
                   <div class="col-sm-7 dayOfWeek">
