@@ -1,9 +1,9 @@
 body{
-    background-color: #4eA8D9;
-    font-family: 'Poppins';
-    font-weight: 300;
-    margin: 0;
-    height: 100%;
+  background-color: #4eA8D9;
+  font-family: "Poppins";
+  font-weight: 300;
+  margin: 0;
+  height: 100%;
 }
 
 html{
@@ -157,7 +157,7 @@ h3{
     border: 2px solid rgba(255, 255, 255, 1);
     position: relative;
     color: #ffffff;
-    
+
   }
   .compass .direction {
     height: 100%;
@@ -453,4 +453,8 @@ h3{
         width: 90%;
         height: 60%;
     }
+}
+#air-quality p{
+  margin: 1px;
+
 }

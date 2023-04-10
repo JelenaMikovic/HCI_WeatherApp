@@ -7,11 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700&display=swap">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
-<body *ngIf="hasLoaded">
+<body *ngIf="hasLoaded && hasLoadedHistory">
 
   <div class="text-center">
     <p class="city">{{forecast.location.name}}</p>
@@ -101,14 +102,27 @@
         </div>
         <div class="row" id="kara">
           <div class="col-sm-7" id="forcast">
-            <div class="box forcast">
+            <div class="box forcast" >
               <p>10-DAY FORECAST</p>
+              <div class="row" *ngFor="let forecast of forecastHistory.forecast.forecastday">
+                <p>{{forecast.date}}</p>
+                <img src="{{forecast.day.condition.icon}}">
+                <p>min: {{forecast.day.mintemp_c}}</p>
+                <p>max: {{forecast.day.maxtemp_c}}</p>
+              </div>
             </div>
           </div>
           <div class="col-sm-5">
             <div class="row air" id="astro">
               <div class="box">
                 <p>AIR QUALITY</p>
+                <div id="air-quality">
+                  <p>CO2: {{forecast.current.air_quality.co.toFixed(2)}}</p>
+                  <p>NO2: {{forecast.current.air_quality.no2.toFixed(2)}}</p>
+                  <p>O3: {{forecast.current.air_quality.o3.toFixed(2)}}</p>
+                  <p>PM2.5: {{forecast.current.air_quality.pm2_5.toFixed(2)}}</p>
+                  <p>PM10: {{forecast.current.air_quality.pm10.toFixed(2)}}</p>
+                </div>
               </div>
             </div>
 
@@ -141,7 +155,6 @@
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>

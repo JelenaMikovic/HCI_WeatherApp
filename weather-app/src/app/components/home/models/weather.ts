@@ -65,17 +65,17 @@ export interface Day {
   maxwind_kph: number;
   totalprecip_mm: number;
   totalprecip_in: number;
-  totalsnow_cm: number;
-  avgvis_km: number;
-  avgvis_miles: number;
-  avghumidity: number;
-  daily_will_it_rain: number;
-  daily_chance_of_rain: number;
-  daily_will_it_snow: number;
-  daily_chance_of_snow: number;
+  totalsnow_cm?: number;
+  avgvis_km?: number;
+  avgvis_miles?: number;
+  avghumidity?: number;
+  daily_will_it_rain?: number;
+  daily_chance_of_rain?: number;
+  daily_will_it_snow?: number;
+  daily_chance_of_snow?: number;
   condition: Condition;
   uv: number;
-  air_quality: AirQuality;
+  air_quality?: AirQuality;
 }
 
 export interface Forecastday {
@@ -93,8 +93,8 @@ export interface Astro {
   moonset: string;
   moon_phase: string;
   moon_illumination: string;
-  is_moon_up: number;
-  is_sun_up: number;
+  is_moon_up?: number;
+  is_sun_up?: number;
 }
 
 export interface Hour {
@@ -130,7 +130,8 @@ export interface Hour {
   vis_miles: number;
   gust_mph: number;
   gust_kph: number;
-  air_quality: AirQuality;
+  air_quality?: AirQuality;
+  uv?: number;
 }
 
 export interface Alert {
@@ -151,7 +152,7 @@ export interface Alert {
 
 export interface Forecast {
   location: Location;
-  current: Current;
-  forecast: {forecastday: Forecastday[]};
-  alerts: {alert: Alert[]};
+  current?: Current;
+  forecast: Forecastday[];
+  alerts?: Alert[];
 }
