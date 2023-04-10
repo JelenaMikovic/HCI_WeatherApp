@@ -38,7 +38,7 @@
                     tabindex="0"
                     class="carousel__slide">
 
-                    <div class="col-md-1" *ngFor="let hour of chosenDay.hour.slice(0,12)">
+                    <div class="col-md-1" *ngFor="let hour of display.hourlyForecast.slice(0,12)" (click)="onHourClick(hour)">
                       <p class="text-center temphour">{{hour.time.substring(11, 16)}}</p>
                       <div class="kara">
                       <img src="{{hour.condition.icon}}" class="houricon">
@@ -57,7 +57,7 @@
                     tabindex="0"
                     class="carousel__slide">
 
-                    <div class="col-md-1" *ngFor="let hour of chosenDay.hour.slice(12,24)">
+                    <div class="col-md-1" *ngFor="let hour of display.hourlyForecast.slice(12,24)" (click)="onHourClick(hour)">
                       <p class="text-center temphour">{{hour.time.substring(11, 16)}}</p>
                       <div class="kara">
                       <img src="{{hour.condition.icon}}" class="houricon">
@@ -93,11 +93,11 @@
               <div class="box">
                 <p>AIR QUALITY</p>
                 <div id="air-quality">
-                  <p>CO2: {{forecast.current.air_quality.co.toFixed(2)}}</p>
-                  <p>NO2: {{forecast.current.air_quality.no2.toFixed(2)}}</p>
-                  <p>O3: {{forecast.current.air_quality.o3.toFixed(2)}}</p>
-                  <p>PM2.5: {{forecast.current.air_quality.pm2_5.toFixed(2)}}</p>
-                  <p>PM10: {{forecast.current.air_quality.pm10.toFixed(2)}}</p>
+                  <p>CO2: {{display.airQuality.co.toFixed(2)}}</p>
+                  <p>NO2: {{display.airQuality.no2.toFixed(2)}}</p>
+                  <p>O3: {{display.airQuality.o3.toFixed(2)}}</p>
+                  <p>PM2.5: {{display.airQuality.pm2_5.toFixed(2)}}</p>
+                  <p>PM10: {{display.airQuality.pm10.toFixed(2)}}</p>
                 </div>
               </div>
             </div>
@@ -106,13 +106,13 @@
               <div class="col-sm-6">
                 <div class="box" id="visibility">
                   <p>FEELS LIKE</p>
-                  <p class="text-center num">{{forecast.current.feelslike_c}}</p>
+                  <p class="text-center num">{{display.feelsLike}}</p>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="box" id="visibility">
                   <p>HUMIDITY</p>
-                  <p class="text-center num">{{forecast.current.humidity}}</p>
+                  <p class="text-center num">{{display.humidity}}</p>
                 </div>
               </div>
             </div>
@@ -121,13 +121,13 @@
               <div class="col-sm-6">
                 <div class="box" id="visibility">
                   <p>UV INDEX</p>
-                  <p class="text-center num">{{forecast.current.uv}}</p>
+                  <p class="text-center num">{{display.uv}}</p>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="box" id="visibility">
                   <p>PRESSURE</p>
-                  <p class="text-center num">{{forecast.current.pressure_mb}}</p>
+                  <p class="text-center num">{{display.pressure}}</p>
                 </div>
               </div>
             </div>
@@ -146,13 +146,13 @@
           <div class="col-sm-6">
             <div class="box" id="visibility">
               <p>VISIBILITY</p>
-              <p class="text-center num">{{forecast.current.vis_km}}</p>
+              <p class="text-center num">{{display.visibility}}</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="box" id="visibility">
               <p>PRECEPATION</p>
-              <p class="text-center num">{{forecast.current.precip_mm}}</p>
+              <p class="text-center num">{{display.precipation}}</p>
             </div>
           </div>
         </div>
@@ -164,9 +164,9 @@
               <div class="kara">
                 <div class="compass">
                   <div class="direction">
-                    <p>{{forecast.current.wind_dir}}<span>{{forecast.current.wind_kph}} kph</span></p>
+                    <p>{{display.wind.direction}}<span>{{display.wind.speed}} kph</span></p>
                   </div>
-                  <div class="arrow arrow {{forecast.current.wind_dir}}"></div>
+                  <div class="arrow arrow {{display.wind.direction}}"></div>
                 </div>
               </div>
             </div>

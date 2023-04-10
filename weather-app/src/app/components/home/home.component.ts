@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { WeatherService } from './weather.service';
-import { Forecast, ForecastHistory, Forecastday } from './models/weather';
+import { AirQuality, Astro, Forecast, ForecastHistory, Forecastday, Hour } from './models/weather';
 
 @Component({
   selector: 'app-home',
@@ -14,8 +14,9 @@ export class HomeComponent implements OnInit {
   forecastHistory: ForecastHistory = {} as ForecastHistory;
   hasLoaded: boolean = false;
   hasLoadedHistory: boolean = false;
-  chosenDay: Forecastday = {} as Forecastday;
+  today: Forecastday = {} as Forecastday;
   alert: string = "";
+  display: Display = {} as Display;
 
   constructor(private weatherService: WeatherService) { }
 
@@ -28,8 +29,9 @@ export class HomeComponent implements OnInit {
   getForecast() {
     this.weatherService.getForecast('Belgrade').subscribe((response) => {
       this.forecast = response;
-      this.chosenDay = this.forecast.forecast.forecastday[0];
+      this.today = this.forecast.forecast.forecastday[0];
       this.setAlert();
+      this.setDisplay();
       this.hasLoaded = true;
     });
   }
@@ -58,5 +60,50 @@ export class HomeComponent implements OnInit {
       }
     }
     this.alert = "no alerts"
+  }
+
+  onHourClick(hour: Hour){
+    console.log('Clicked on hour:', hour);
+    this.display.airQuality = hour.air_quality;
+    this.display.feelsLike = hour.feelslike_c;
+    this.display.humidity = hour.humidity;
+    this.display.visibility = hour.vis_km;
+    this.display.precipation = hour.precip_in;
+    this.display.uv = hour.uv;
+    this.display.wind = {direction: hour.wind_dir,
+      speed: hour.wind_kph}
+  }
+
+  onDayClick(hour: Hour){
+
+  }
+
+  setDisplay(){
+    this.display.hourlyForecast = this.today.hour;
+    this.display.astroForecast = this.today.astro;
+    this.display.airQuality = this.forecast.current.air_quality;
+    this.display.feelsLike = this.forecast.current.feelslike_c;
+    this.display.humidity = this.forecast.current.humidity;
+    this.display.visibility = this.forecast.current.vis_km;
+    this.display.precipation = this.forecast.current.precip_in;
+    this.display.uv = this.forecast.current.uv;
+    this.display.wind = {direction: this.forecast.current.wind_dir,
+    speed: this.forecast.current.wind_kph}
+  }
+}
+
+interface Display{
+  hourlyForecast: Hour[];
+  astroForecast: Astro;
+  airQuality: AirQuality;
+  feelsLike: number;
+  humidity: number;
+  visibility: number;
+  precipation: number;
+  uv: number;
+  pressure: number;
+  wind: {
+    direction: string;
+    speed: number;
   }
 }
