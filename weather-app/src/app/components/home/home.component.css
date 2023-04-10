@@ -312,7 +312,7 @@ h3{
   
   .carousel {
     position: relative;
-    padding-top: 8.5vh;
+    padding-top: 8vh;
     filter: drop-shadow(0 0 10px #0003);
     perspective: 100px;
   }
