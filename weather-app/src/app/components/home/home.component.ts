@@ -17,13 +17,28 @@ export class HomeComponent implements OnInit {
   today: Forecastday = {} as Forecastday;
   alert: string = "";
   display: Display = {} as Display;
+  latitude: number = 0;
+  longitude: number = 0;
+  constructor(private weatherService: WeatherService) {
 
-  constructor(private weatherService: WeatherService) { }
+  }
 
   ngOnInit(): void {
-    this.hasLoaded = false;
-    this.getForecast();
-    this.getForecastHistory();
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+        this.hasLoaded = false;
+        this.getForecast();
+        this.getForecastHistory();
+      });
+    } else {
+      console.log('Geolocation is not supported by this browser.');
+      this.hasLoaded = false;
+      this.getForecast();
+      this.getForecastHistory();
+    }
+
   }
 
   getForecast() {
@@ -93,7 +108,7 @@ export class HomeComponent implements OnInit {
     this.display.humidity = this.forecast.current.humidity;
     this.display.visibility = this.forecast.current.vis_km;
     this.display.precipation = this.forecast.current.precip_in;
-    this.display.pressure = this.forecast.current.pressure_in; 
+    this.display.pressure = this.forecast.current.pressure_in;
     this.display.uv = this.forecast.current.uv;
     this.display.wind = {direction: this.forecast.current.wind_dir,
     speed: this.forecast.current.wind_kph}
