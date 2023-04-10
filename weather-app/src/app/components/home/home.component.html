@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700&display=swap">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!--  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>-->
+
+</head>
+
+
+<body *ngIf="hasLoaded && hasLoadedHistory">
+
+<!--  <app-search></app-search>-->
+<div class="search">
+  <input type="text" placeholder="Search for a city" value="" (input)="onSearch($event)" id="searchField">
+  <div class="dropdown" *ngIf="showDropdown">
+    <ul>
+      <li *ngFor="let city of cities;let i = index">
+        <div (click)="onCitySelect(i)">
+          {{ city.name }}, {{ city.region }}, {{ city.country }}
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="text-center">
+  <p class="city">{{forecast.location.name}}</p>
+  <p class="temp">{{forecast.current.temp_c}}</p>
+  <p class="condition">{{forecast.current.condition.text}}</p>
+  <p class="h-l">H:{{forecast.forecast.forecastday[0].day.maxtemp_c}}
+    L:{{forecast.forecast.forecastday[0].day.mintemp_c}}</p>
+</div>
+
+<div class="alert text-center" *ngIf="alert!='no alerts'">
+  <p>{{alert}}</p>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="row hour" id="astro">
+        <div class="box">
+          <p>HOURLY FORECAST</p>
+          <section class="carousel" aria-label="Gallery">
+            <ol class="carousel__viewport">
+              <li id="carousel__slide1" tabindex="0" class="carousel__slide">
+
+                <div class="col-md-1" *ngFor="let hour of display.hourlyForecast.slice(0,12) ; let i = index;">
+                  <div (click)="onHourClick(i)">
+
+                    <p class="text-center temphour">{{hour.time.substring(11, 16)}}</p>
+                    <div class="kara">
+                      <img src="{{hour.condition.icon}}" class="houricon">
+                    </div>
+                    <p class="text-center temphour">{{hour.temp_c}}</p>
+                  </div>
+                </div>
+
+                <div class="carousel__snapper">
+                  <a href="#carousel__slide2" class="carousel__prev">Go to last slide</a>
+                  <a href="#carousel__slide2" class="carousel__next">Go to next slide</a>
+                </div>
+              </li>
+              <li id="carousel__slide2" tabindex="0" class="carousel__slide">
+
+                <div class="col-md-1" *ngFor="let hour of display.hourlyForecast.slice(12,24); let i = index;">
+                  <div (click)="onHourClick(i)">
+
+                    <p class="text-center temphour">{{hour.time.substring(11, 16)}}</p>
+                    <div class="kara">
+                      <img src="{{hour.condition.icon}}" class="houricon">
+                    </div>
+                    <p class="text-center temphour">{{hour.temp_c}}</p>
+                  </div>
+                </div>
+
+                <div class="carousel__snapper"></div>
+                <a href="#carousel__slide1" class="carousel__prev">Go to previous slide</a>
+                <a href="#carousel__slide1" class="carousel__next">Go to next slide</a>
+              </li>
+            </ol>
+
+          </section>
+        </div>
+      </div>
+      <div class="row" id="kara">
+        <div class="col-sm-7" id="forcast">
+          <div class="box forcast">
+            <p>10-DAY FORECAST</p>
+            <hr class="row seperate">
+            <div class="row dayOfWeekRow"
+                 *ngFor="let forecast of forecastHistory.forecast.forecastday; let i = index;">
+              <div (click)="historyClicked(i)">
+                <div class="col-sm-2 dayOfWeek">
+                  <p class="col-sm-7">{{getDayOfWeek(forecast.date.substring(0, 10)).substring(0, 3)}}.</p>
+                  <p class="tempOfWeek col-sm-1">{{forecast.date.substring(8, 10)}} </p>
+                </div>
+
+                <div class="col-sm-7 dayOfWeek">
+                  <div class="col-sm-3">
+                    <img class="dayOfWeekIcon" src="{{forecast.day.condition.icon}}">
+                  </div>
+                  <div class="col-sm-9">
+                    <p>{{forecast.day.condition.text}}</p>
+                  </div>
+                </div>
+                <div class="col-sm-3 dayOfWeek">
+                  <p class="col-sm-3 tempOfWeek">{{forecast.day.mintemp_c}}</p>
+                  <hr class="col-sm-5 line">
+                  <p class="col-sm-4">{{forecast.day.maxtemp_c}}</p>
+                </div>
+              </div>
+              <hr class="row seperate">
+            </div>
+            <div class="row dayOfWeekRow" *ngFor="let forecast of forecast.forecast.forecastday; let i = index;">
+              <div (click)="onDayClick(i)">
+                <div class="col-sm-2 dayOfWeek">
+                  <ng-container *ngIf="forecast.date === getCurrentDate()">
+                    <p class="col-sm-7">Today</p>
+                    <p class="tempOfWeek col-sm-1"></p>
+                  </ng-container>
+                  <ng-container *ngIf="forecast.date !== getCurrentDate()">
+                    <p class="col-sm-7">{{getDayOfWeek(forecast.date.substring(0, 10)).substring(0, 3)}}.</p>
+                    <p class="tempOfWeek col-sm-1">{{forecast.date.substring(8, 10)}} </p>
+                  </ng-container>
+                </div>
+
+                <div class="col-sm-7 dayOfWeek">
+                  <div class="col-sm-3">
+                    <img class="dayOfWeekIcon" src="{{forecast.day.condition.icon}}">
+                  </div>
+                  <div class="col-sm-9">
+                    <p>{{forecast.day.condition.text}}</p>
+                  </div>
+                </div>
+                <div class="col-sm-3 dayOfWeek">
+                  <p class="col-sm-3 tempOfWeek">{{forecast.day.mintemp_c}}</p>
+                  <hr class="col-sm-5 line">
+                  <p class="col-sm-4">{{forecast.day.maxtemp_c}}</p>
+                </div>
+              </div>
+              <hr class="row seperate">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-5">
+          <div class="row air" id="astro">
+            <div class="box">
+              <p>ASTRO FORECAST</p>
+              <div class="row astroRow">
+                <div class="col-sm-2"><img src="assets/sunrise.png" class="astroImg"></div>
+                <p class="col-sm-4 astroText">{{display.astroForecast.sunrise}}</p>
+                <div class="col-sm-2"><img src="assets/sunset.png" class="astroImg"></div>
+                <p class="col-sm-4 astroText">{{display.astroForecast.sunset}}</p>
+              </div>
+              <div class="row astroRow">
+                <div class="col-sm-2"><img src="assets/moonrise.png" class="astroImg"></div>
+                <p class="col-sm-4 astroText">{{display.astroForecast.moonrise}}</p>
+                <div class="col-sm-2"><img src="assets/moonset.png" class="astroImg"></div>
+                <p class="col-sm-4 astroText">{{display.astroForecast.moonset}}</p>
+              </div>
+              <div class="row astroRow">
+                <p class="col-sm-6 astroText">Moon phase:</p>
+                <p class="col-sm-6 astroText">Illumination:</p>
+              </div>
+              <div class="row astroRow">
+                <p class="col-sm-6 astroText">{{display.astroForecast.moon_phase}}</p>
+                <p class="col-sm-6 astroText">{{display.astroForecast.moon_illumination}}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="box" id="visibility">
+                <p *ngIf="showCurrent == false">AVG. TEMP.</p>
+                <p *ngIf="showCurrent">FEELS LIKE</p>
+                <p class="text-center num">{{display.feelsLike}}</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="box" id="visibility">
+                <p *ngIf="showCurrent == false">AVG. HUMIDITY</p>
+                <p *ngIf="showCurrent">HUMIDITY</p>
+                <p class="text-center num">{{display.humidity}}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="box" id="visibility">
+                <p>UV INDEX</p>
+                <p class="text-center num">{{display.uv}}</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <ng-container *ngIf="showCurrent">
+                <div class="box" id="visibility">
+                  <p>PRESSURE</p>
+                  <p class="text-center num">{{display.pressure}}</p>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="showCurrent == false">
+                <div class="box show" id="visibility" (click)="setDisplay()">
+                  <p>SHOW </p>
+                  <p>CURRENT</p>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+
+      <div class="row astro2" id="astro">
+        <div class="box">
+          <p *ngIf="showCurrent == false">AVG. AIR QUALITY</p>
+          <p *ngIf="showCurrent">AIR QUALITY</p>
+          <div id="air-quality">
+            <div class="row kara">
+              <div role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="500"
+                   [style.--value]="calculateAqi(display.airQuality.pm2_5)"></div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="row">
+                  <p class="element">CO2:</p>
+                </div>
+                <div class="row">
+                  <p class="dayOfWeek"> {{display.airQuality.co.toFixed(2)}}</p>
+                </div>
+                <div>
+                  <div class="w3-light-grey w3-round-xlarge" style="height:5px">
+                    <div class="w3-container w3-yellow w3-round-xlarge"
+                         [ngStyle]="{ 'width': co2ToWidth(display.airQuality.co) }"
+                         style="height:5px"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="row">
+                  <p class="element">NO2:</p>
+                </div>
+                <div class="row">
+                  <p class="dayOfWeek"> {{display.airQuality.no2.toFixed(2)}}</p>
+                </div>
+                <div>
+                  <div class="w3-light-grey w3-round-xlarge" style="height:5px">
+                    <div class="w3-container w3-blue w3-round-xlarge" [ngStyle]="{ 'width': getNo2ProgressBarWidth() }"
+                         style="height:5px"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="row">
+                  <p class="element">SO2:</p>
+                </div>
+                <div class="row">
+                  <p class="dayOfWeek"> {{display.airQuality.so2.toFixed(2)}}</p>
+                </div>
+                <div>
+                  <div class="w3-light-grey w3-round-xlarge" style="height:5px">
+                    <div class="w3-container w3-red w3-round-xlarge"
+                         [ngStyle]="{ 'width': getSO2Width(display.airQuality.so2) }" style="height:5px"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="row">
+                  <p class="element">PM2.5:</p>
+                </div>
+                <div class="row">
+                  <p class="dayOfWeek"> {{display.airQuality.pm2_5.toFixed(2)}}</p>
+                </div>
+                <div>
+                  <div class="w3-light-grey w3-round-xlarge" style="height:5px">
+                    <div class="w3-container w3-orange w3-round-xlarge"
+                         [ngStyle]="{ 'width': getPM2_5Width(display.airQuality.pm2_5) }" style="height:5px"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="row">
+                  <p class="element">PM10:</p>
+                </div>
+                <div class="row">
+                  <p class="dayOfWeek"> {{display.airQuality.pm10.toFixed(2)}}</p>
+                </div>
+                <div>
+                  <div class="w3-light-grey w3-round-xlarge" style="height:5px">
+                    <div class="w3-container w3-purple w3-round-xlarge"
+                         [ngStyle]="{ 'width': getPm10Width(display.airQuality.pm10) }" style="height:5px"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="row">
+                  <p class="element">O3:</p>
+                </div>
+                <div class="row">
+                  <p class="dayOfWeek"> {{display.airQuality.o3.toFixed(2)}}</p>
+                </div>
+                <div>
+                  <div class="w3-light-grey w3-round-xlarge" style="height:5px">
+                    <div class="w3-container w3-green w3-round-xlarge"
+                         [ngStyle]="{ 'width': getO3Width(display.airQuality.o3) }" style="height:5px"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="box" id="visibility">
+            <p *ngIf="showCurrent == false">AVG. VISIBILITY</p>
+            <p *ngIf="showCurrent">VISIBILITY</p>
+            <p class="text-center num">{{display.visibility}}</p>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="box" id="visibility">
+            <p *ngIf="showCurrent == false">TOTAL PRECEP.</p>
+            <p *ngIf="showCurrent">PRECEPATION</p>
+            <p class="text-center num">{{display.precipation}}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <ng-container *ngIf="showCurrent">
+            <div class="box" id="visibility">
+              <p>WIND</p>
+              <div class="kara">
+                <div class="compass">
+                  <div class="direction">
+                    <p>{{display.wind.direction}}<span>{{display.wind.speed}} kph</span></p>
+                  </div>
+                  <div class="arrow arrow {{display.wind.direction}}"></div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="showCurrent == false">
+            <div class="box" id="visibility">
+              <p>MAX WIND</p>
+              <p class="text-center num">{{display.wind.speed}} kph</p>
+            </div>
+          </ng-container>
+
+
+        </div>
+        <div class="col-sm-6">
+          <div class="box" id="visibility">
+            <p *ngIf="showCurrent == false">AVG. zxx</p>
+            <p *ngIf="showCurrent">zxx</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

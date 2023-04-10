@@ -1,0 +1,28 @@
+ul{
+  background-color: rgba(0, 0, 0, 0.15);
+  color: white;
+  width: fit-content;
+  list-style: none;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+input{
+  background-color: rgba(0, 0, 0, 0.15);
+  color: white;
+  border: 0;
+  border-radius: 2px;
+}
+
+input::placeholder {
+  color: white;
+}
+
+li{
+  font-size: 14px;
+}
+
+li:hover{
+  font-size: 14px;
+  background-color: #ffffff3f;
+}
