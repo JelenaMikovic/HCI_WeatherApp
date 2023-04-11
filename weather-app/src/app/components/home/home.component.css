@@ -523,6 +523,10 @@ h3{
 
 }
 
+.bla{
+  font-size: 20px;
+}
+
 @media screen and (min-width: 1000px) {
 .carouselSmall{
   display: none;
