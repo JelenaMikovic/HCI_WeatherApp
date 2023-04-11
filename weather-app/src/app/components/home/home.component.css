@@ -1,5 +1,5 @@
 body{
-  background-color: #4eA8D9;
+  background-color: #639ebd;
   font-family: "Poppins";
   font-weight: 300;
   margin: 0;
@@ -10,7 +10,7 @@ html{
     margin: 0;
     height: 100%;
     font-weight: lighter;
-    background-color: #4eA8D9;
+    background-color: #639ebd;
     min-height: 100vh;
     position: relative;
 }
@@ -499,7 +499,54 @@ h3{
         width: 90%;
         height: 60%;
     }
+    .search {
+      position: relative;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      margin-top: 15px;
+      margin-left: 15px;
+    }
 }
+
+@media screen and (min-width: 1000px) {
+.carouselSmall{
+  display: none;
+}
+}
+
+@media screen and (max-width: 1000px) {
+  .carousel{
+    display: none;
+  }
+
+  .carouselSmall.col-md-4{
+    width: 25%;
+    margin-bottom: 20px;
+  }
+
+  .carousel__slide {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .carouselSmall {
+    position: relative;
+    padding-top: 10vh;
+    filter: drop-shadow(0 0 10px #0003);
+    perspective: 100px;
+    padding-bottom: 5px;
+  }
+
+  .carousel__viewport{
+    height: fit-content;
+  }
+  
+}
+
+
 #air-quality p{
   margin: 1px;
 
