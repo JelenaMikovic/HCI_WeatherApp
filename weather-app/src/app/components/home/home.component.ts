@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { WeatherService } from './weather.service';
 import { AirQuality, Astro, Forecast, ForecastHistory, Forecastday, Hour } from './models/weather';
@@ -162,6 +162,13 @@ export class HomeComponent implements OnInit {
     this.display.daily_chance_of_rain = this.forecastHistory.forecast.forecastday[index].day.daily_chance_of_rain;
     this.display.daily_will_it_snow = this.forecastHistory.forecast.forecastday[index].day.daily_will_it_snow;
     this.display.daily_chance_of_snow = this.forecastHistory.forecast.forecastday[index].day.daily_chance_of_snow;
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: any): void {
+    if (!event.target.closest('.dropdown') && this.showDropdown) {
+      this.showDropdown = false;
+    }
   }
 
 

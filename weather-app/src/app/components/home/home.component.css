@@ -703,6 +703,11 @@ input::placeholder {
   color: white;
 }
 
+.search li{
+  height: fit-content;
+  font-size: 14px;
+}
+
 .searchSmall li{
   height: fit-content;
   font-size: 14px;
@@ -713,7 +718,21 @@ input::placeholder {
   background-color: #ffffff3f;
 }
 
+.search li:hover{
+  font-size: 14px;
+  background-color: #ffffff3f;
+}
+
 .searchSmall ul{
+  background-color: rgba(0, 0, 0, 0.15);
+  color: white;
+  width: fit-content;
+  list-style: none;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.search ul{
   background-color: rgba(0, 0, 0, 0.15);
   color: white;
   width: fit-content;
