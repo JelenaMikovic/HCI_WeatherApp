@@ -32,6 +32,19 @@
   </div>
 </div>
 
+<div class="searchSmall kara">
+  <input type="text" placeholder="Search for a city" value="" (input)="onSearch($event)" id="searchField">
+  <div class="dropdown kara" *ngIf="showDropdown">
+    <ul>
+      <li *ngFor="let city of cities;let i = index">
+        <div (click)="onCitySelect(i)">
+          {{ city.name }}, {{ city.region }}, {{ city.country }}
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
 <div class="text-center">
   <p class="city">{{forecast.location.name}}</p>
   <p class="temp">{{forecast.current.temp_c}}</p>

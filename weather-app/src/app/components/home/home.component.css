@@ -513,10 +513,17 @@ h3{
 .carouselSmall{
   display: none;
 }
+.searchSmall{
+  display: none;
+}
 }
 
 @media screen and (max-width: 1000px) {
   .carousel{
+    display: none;
+  }
+
+  .search{
     display: none;
   }
 
@@ -543,7 +550,15 @@ h3{
   .carousel__viewport{
     height: fit-content;
   }
-  
+
+  .searchSmall{
+    margin-top: 10px;
+    display: block;
+  }
+  input{
+    position: relative;
+    left: 25%;
+  }
 }
 
 
@@ -688,13 +703,36 @@ input::placeholder {
   color: white;
 }
 
-.search li{
+.searchSmall li{
   height: fit-content;
   font-size: 14px;
 }
 
-.search li:hover{
+.searchSmall li:hover{
   font-size: 14px;
   background-color: #ffffff3f;
+}
+
+.searchSmall ul{
+  background-color: rgba(0, 0, 0, 0.15);
+  color: white;
+  width: fit-content;
+  list-style: none;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.searchSmall li{
+  height: fit-content;
+  font-size: 14px;
+}
+
+.searchSmall li:hover{
+  font-size: 14px;
+  background-color: #ffffff3f;
+}
+
+.searchSmall.dropdown{
+  position: sticky;
 }
 
