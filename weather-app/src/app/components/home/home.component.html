@@ -368,7 +368,11 @@
               <div class="col-sm-6">
                 <div class="box" id="visibility">
                   <p>UV INDEX</p>
-                  <p class="text-center num">{{display.uv}}</p>
+                  <p *ngIf="display.uv < 3" class="text-center num" style="color:green; font-weight:bold; ">LOW</p>
+                  <p *ngIf="display.uv >= 3 && display.uv < 6" class="text-center num" style="color:yellow; font-weight:bold; ">MODERATE</p>
+                  <p *ngIf="display.uv >= 6 && display.uv < 8" class="text-center num" style="color:orange; font-weight:bold; ">HIGH</p>
+                  <p *ngIf="display.uv >= 8 && display.uv < 11" class="text-center num" style="color:red; font-weight:bold; ">VERY HIGH</p>
+                  <p *ngIf="display.uv >= 11" class="text-center num" style="color:purple; font-weight:bold; ">EXTREME</p>
                 </div>
               </div>
               <div class="col-sm-6">
