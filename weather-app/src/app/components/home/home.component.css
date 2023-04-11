@@ -19,7 +19,6 @@ html{
     background-color: rgba(0, 0, 0, 0.15);
     border-radius: 5px;
     padding: 5px;
-
 }
 
 p{
@@ -82,23 +81,28 @@ h3{
 
 #visibility{
     margin: 4px;
-    height: 13vh;
+    min-height: 13vh;
+    min-width: fit-content;
 }
 
 .astro2{
-    height: 40vh;
+    min-height: 40vh;
+    min-width: fit-content;
 }
 
 .air{
-    height: 26.6vh;
+    min-height: 26.6vh;
+    min-width: fit-content;
 }
 
 .forcast{
-    height: 54.7vh;
+    min-height: 54.7vh;
+    min-width: fit-content;
 }
 
 .hour{
-    height: 12.3vh;
+    min-height: fit-content;
+    min-width: fit-content;
 }
 
 .city{
@@ -145,9 +149,28 @@ h3{
     margin-bottom: 15px;
 }
 
+.noalert{
+  width: 50%;
+  background-color: rgba(249, 111, 31, 0);
+  border-radius: 5px;
+  padding: 5px;
+  margin: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  color: rgba(249, 111, 31, 0);
+}
+
+.noalert p{
+  color: rgba(249, 111, 31, 0);
+}
+
 .num{
     font-size: 30px;
     margin-top: 10px;
+}
+
+.pad{
+  padding: 5px;
 }
 
 .compass {
@@ -316,6 +339,7 @@ h3{
     padding-top: 8vh;
     filter: drop-shadow(0 0 10px #0003);
     perspective: 100px;
+    padding-bottom: 5px;
   }
 
   .carousel__viewport {
@@ -337,6 +361,8 @@ h3{
     position: relative;
     flex: 0 0 100%;
     width: 100%;
+    padding-left: 7px;
+    padding-right: 7px;
   }
 
 
@@ -435,12 +461,12 @@ h3{
     content: '';
     z-index: 1;
     background-color: #33333300;
-    background-size: 1.5rem 1.5rem;
+    background-size: 0.75rem 0.75rem;
     background-repeat: no-repeat;
     background-position: center center;
     color: #fff;
-    font-size: 2.5rem;
-    line-height: 4rem;
+    font-size: 1.75rem;
+    line-height: 3.25rem;
     text-align: center;
     pointer-events: none;
   }

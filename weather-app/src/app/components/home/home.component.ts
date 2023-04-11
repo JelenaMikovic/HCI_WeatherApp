@@ -104,7 +104,7 @@ export class HomeComponent implements OnInit {
         const expires = new Date(this.forecast.alerts.alert[i].expires);
         const today = new Date();
         if (today <= expires && today >= effective) {
-          this.alert = this.forecast.alerts.alert[i].headline;
+          this.alert = this.forecast.alerts.alert[i].category + ":  " + this.forecast.alerts.alert[i].event;
           return
         }
       }
@@ -139,6 +139,10 @@ export class HomeComponent implements OnInit {
     this.display.uv = this.forecast.forecast.forecastday[index].day.uv;
     this.display.wind = {direction: this.forecast.current.wind_dir,
     speed: this.forecast.forecast.forecastday[index].day.maxwind_kph}
+    this.display.daily_will_it_rain = this.forecast.forecast.forecastday[index].day.daily_will_it_rain;
+    this.display.daily_chance_of_rain = this.forecast.forecast.forecastday[index].day.daily_chance_of_rain;
+    this.display.daily_will_it_snow = this.forecast.forecast.forecastday[index].day.daily_will_it_snow;
+    this.display.daily_chance_of_snow = this.forecast.forecast.forecastday[index].day.daily_chance_of_snow;
   }
 
   historyClicked(index: number) {
@@ -154,6 +158,10 @@ export class HomeComponent implements OnInit {
     this.display.uv = this.forecastHistory.forecast.forecastday[index].day.uv;
     this.display.wind = {direction: this.forecast.current.wind_dir,
     speed: this.forecastHistory.forecast.forecastday[index].day.maxwind_kph}
+    this.display.daily_will_it_rain = this.forecastHistory.forecast.forecastday[index].day.daily_will_it_rain;
+    this.display.daily_chance_of_rain = this.forecastHistory.forecast.forecastday[index].day.daily_chance_of_rain;
+    this.display.daily_will_it_snow = this.forecastHistory.forecast.forecastday[index].day.daily_will_it_snow;
+    this.display.daily_chance_of_snow = this.forecastHistory.forecast.forecastday[index].day.daily_chance_of_snow;
   }
 
 
@@ -170,6 +178,10 @@ export class HomeComponent implements OnInit {
     this.display.uv = this.forecast.current.uv;
     this.display.wind = {direction: this.forecast.current.wind_dir,
     speed: this.forecast.current.wind_kph}
+    this.display.daily_will_it_rain = this.today.day.daily_will_it_rain;
+    this.display.daily_chance_of_rain = this.today.day.daily_chance_of_rain;
+    this.display.daily_will_it_snow = this.today.day.daily_will_it_snow;
+    this.display.daily_chance_of_snow = this.today.day.daily_chance_of_snow;
   }
 
   getDayOfWeek(dateString: string) {
@@ -288,4 +300,8 @@ interface Display{
     direction: string;
     speed: number;
   }
+  daily_will_it_rain: number;
+  daily_chance_of_rain: number;
+  daily_will_it_snow: number;
+  daily_chance_of_snow: number;
 }

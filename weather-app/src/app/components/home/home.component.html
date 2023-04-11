@@ -44,12 +44,16 @@
   <p>{{alert}}</p>
 </div>
 
+<div class="noalert" *ngIf="alert=='no alerts'">
+  <p>{{alert}}</p>
+</div>
+
 <div class="container">
   <div class="row">
     <div class="col-sm-8">
       <div class="row hour" id="astro">
         <div class="box">
-          <p>HOURLY FORECAST</p>
+          <p class="pad">HOURLY FORECAST</p>
           <section class="carousel" aria-label="Gallery">
             <ol class="carousel__viewport">
               <li id="carousel__slide1" tabindex="0" class="carousel__slide">
@@ -95,7 +99,7 @@
       <div class="row" id="kara">
         <div class="col-sm-7" id="forcast">
           <div class="box forcast">
-            <p>10-DAY FORECAST</p>
+            <p class="pad">10-DAY FORECAST</p>
             <hr class="row seperate">
             <div class="row dayOfWeekRow"
                  *ngFor="let forecast of forecastHistory.forecast.forecastday; let i = index;">
@@ -155,7 +159,7 @@
         <div class="col-sm-5">
           <div class="row air" id="astro">
             <div class="box">
-              <p>ASTRO FORECAST</p>
+              <p class="pad">ASTRO FORECAST</p>
               <div class="row astroRow">
                 <div class="col-sm-2"><img src="assets/sunrise.png" class="astroImg"></div>
                 <p class="col-sm-4 astroText">{{display.astroForecast.sunrise}}</p>
@@ -206,7 +210,7 @@
             <div class="col-sm-6">
               <ng-container *ngIf="showCurrent">
                 <div class="box" id="visibility">
-                  <p>PRESSURE</p>
+                  <p class="pad">PRESSURE</p>
                   <p class="text-center num">{{display.pressure}}</p>
                 </div>
               </ng-container>
@@ -225,8 +229,8 @@
 
       <div class="row astro2" id="astro">
         <div class="box">
-          <p *ngIf="showCurrent == false">AVG. AIR QUALITY</p>
-          <p *ngIf="showCurrent">AIR QUALITY</p>
+          <p *ngIf="showCurrent == false" class="pad">AVG. AIR QUALITY</p>
+          <p *ngIf="showCurrent" class="pad">AIR QUALITY</p>
           <div id="air-quality">
             <div class="row kara">
               <div role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="500"
@@ -348,7 +352,7 @@
           <ng-container *ngIf="showCurrent">
             <div class="box" id="visibility">
               <p>WIND</p>
-              <div class="kara">
+              <div class="kara pad">
                 <div class="compass">
                   <div class="direction">
                     <p>{{display.wind.direction}}<span>{{display.wind.speed}} kph</span></p>
@@ -369,8 +373,11 @@
         </div>
         <div class="col-sm-6">
           <div class="box" id="visibility">
-            <p *ngIf="showCurrent == false">AVG. zxx</p>
-            <p *ngIf="showCurrent">zxx</p>
+              <p *ngIf="display.daily_will_it_snow == 1">CHANCES OF SNOW</p>
+              <p *ngIf="display.daily_will_it_snow == 1" class="text-center num">{{display.daily_chance_of_snow}}%</p>
+              <p *ngIf="display.daily_will_it_rain == 1">CHANCES OF RAIN</p>
+              <p *ngIf="display.daily_will_it_rain == 1" class="text-center num">{{display.daily_chance_of_rain}}%</p>
+              <p *ngIf="display.daily_will_it_rain == 0 && display.daily_will_it_snow == 0">nothing</p>
           </div>
         </div>
       </div>
