@@ -284,10 +284,11 @@
                 <div (click)="historyClicked(i)">
                   <div class="dayOfWeek">
                     <div class="col-sm-5">
-                        <p>{{getDayOfWeek(forecast.date.substring(0, 10)).substring(0,
-                          3)}}. {{forecast.date.substring(8, 10)}}</p>
+                      <p>{{getDayOfWeek(forecast.date.substring(0, 10)).substring(0,
+                        3)}}. {{forecast.date.substring(8, 10)}}</p>
                       <img class="dayOfWeekIcon" src="{{forecast.day.condition.icon}}">
-                      <p class="kara dayOfWeek">{{forecast.day.mintemp_c}}<sup>°</sup>/{{forecast.day.maxtemp_c}}<sup>°</sup></p>
+                      <p class="kara dayOfWeek">
+                        {{forecast.day.mintemp_c}}<sup>°</sup>/{{forecast.day.maxtemp_c}}<sup>°</sup></p>
                     </div>
                     <div class="col-sm-1">
                       <p>{{forecast.day.condition.text}}</p>
@@ -319,6 +320,16 @@
                 <hr class="row seperate">
               </div>
             </div>
+            <ng-container *ngIf="showCurrent == false">
+              <div class="showBox show" id="visibility" (click)="setDisplay()" style="
+              margin-left: 0px;
+              margin-right: 0px;
+              margin-bottom: 0px;
+              margin-top: 4px;
+          ">
+                <p class="text-center" style="font-weight: bold;" id="karcina">SHOW CURRENT</p>
+              </div>
+            </ng-container>
           </div>
           <div class="col-sm-5">
             <div class="row air" id="astro">
@@ -355,14 +366,14 @@
                   </div>
                 </div>
 
-<!--                <div class="row astroRow">-->
-<!--                  <p class="col-sm-6 astroText"></p>-->
-<!--                  <p class="col-sm-6 astroText"></p>-->
-<!--                </div>-->
-<!--                <div class="row astroRow">-->
-<!--                  <p class="col-sm-6 astroText">{{display.astroForecast.moon_phase}}</p>-->
-<!--                  <p class="col-sm-6 astroText">{{display.astroForecast.moon_illumination}}</p>-->
-<!--                </div>-->
+                <!--                <div class="row astroRow">-->
+                <!--                  <p class="col-sm-6 astroText"></p>-->
+                <!--                  <p class="col-sm-6 astroText"></p>-->
+                <!--                </div>-->
+                <!--                <div class="row astroRow">-->
+                <!--                  <p class="col-sm-6 astroText">{{display.astroForecast.moon_phase}}</p>-->
+                <!--                  <p class="col-sm-6 astroText">{{display.astroForecast.moon_illumination}}</p>-->
+                <!--                </div>-->
               </div>
             </div>
 
@@ -378,7 +389,7 @@
                 <div class="box" id="visibility">
                   <p *ngIf="showCurrent == false">AVG. HUMIDITY</p>
                   <p *ngIf="showCurrent">HUMIDITY</p>
-                  <p class="text-center num">{{display.humidity}}</p>
+                  <p class="text-center num">{{display.humidity}}%</p>
                 </div>
               </div>
             </div>
@@ -388,25 +399,24 @@
                 <div class="box" id="visibility">
                   <p>UV INDEX</p>
                   <p *ngIf="display.uv < 3" class="text-center num" style="color:green; font-weight:bold; ">LOW</p>
-                  <p *ngIf="display.uv >= 3 && display.uv < 6" class="text-center bla" style="color:yellow; font-weight:bold;">MODERATE</p>
-                  <p *ngIf="display.uv >= 6 && display.uv < 8" class="text-center num" style="color:orange; font-weight:bold; ">HIGH</p>
-                  <p *ngIf="display.uv >= 8 && display.uv < 11" class="text-center bla" style="color:red; font-weight:bold;">VERY HIGH</p>
-                  <p *ngIf="display.uv >= 11" class="text-center bla" style="color:purple; font-weight:bold;">EXTREME</p>
+                  <p *ngIf="display.uv >= 3 && display.uv < 6" class="text-center bla"
+                    style="color:yellow; font-weight:bold;">MODERATE</p>
+                  <p *ngIf="display.uv >= 6 && display.uv < 8" class="text-center num"
+                    style="color:orange; font-weight:bold; ">HIGH</p>
+                  <p *ngIf="display.uv >= 8 && display.uv < 11" class="text-center bla"
+                    style="color:red; font-weight:bold;">VERY HIGH</p>
+                  <p *ngIf="display.uv >= 11" class="text-center bla" style="color:purple; font-weight:bold;">EXTREME
+                  </p>
                 </div>
               </div>
               <div class="col-sm-6">
                 <ng-container *ngIf="showCurrent">
                   <div class="box" id="visibility">
                     <p>PRESSURE</p>
-                    <p class="text-center num">{{display.pressure}}</p>
+                    <p class="text-center num">{{display.pressure}}hPa</p>
                   </div>
                 </ng-container>
-                <ng-container *ngIf="showCurrent == false">
-                  <div class="box show" id="visibility" (click)="setDisplay()">
-                    <p>SHOW </p>
-                    <p>CURRENT</p>
-                  </div>
-                </ng-container>
+
               </div>
             </div>
           </div>
@@ -524,14 +534,14 @@
             <div class="box" id="visibility">
               <p *ngIf="showCurrent == false">AVG. VISIBILITY</p>
               <p *ngIf="showCurrent">VISIBILITY</p>
-              <p class="text-center num">{{display.visibility}}</p>
+              <p class="text-center num">{{display.visibility}}km</p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="box" id="visibility">
-              <p *ngIf="showCurrent == false">TOTAL PRECEP.</p>
-              <p *ngIf="showCurrent">PRECEPATION</p>
-              <p class="text-center num">{{display.precipation}}</p>
+              <p *ngIf="showCurrent == false">TOTAL PRECIP.</p>
+              <p *ngIf="showCurrent">PRECIPITATION</p>
+              <p class="text-center num">{{display.precipation}}mm</p>
             </div>
           </div>
         </div>
@@ -561,13 +571,15 @@
 
           </div>
           <div class="col-sm-6">
-            <div class="box" id="visibility">
-              <p *ngIf="display.daily_will_it_snow == 1">CHANCES OF SNOW</p>
-              <p *ngIf="display.daily_will_it_snow == 1" class="text-center num">{{display.daily_chance_of_snow}}%</p>
-              <p *ngIf="display.daily_will_it_rain == 1">CHANCES OF RAIN</p>
-              <p *ngIf="display.daily_will_it_rain == 1" class="text-center num">{{display.daily_chance_of_rain}}%</p>
-              <p *ngIf="display.daily_will_it_rain == 0 && display.daily_will_it_snow == 0">NO SNOW OR RAIN</p>
-            </div>
+            <ng-container *ngIf="display.daily_will_it_snow !== undefined">
+              <div class="box" id="visibility">
+                <p *ngIf="display.daily_will_it_snow == 1">CHANCES OF SNOW</p>
+                <p *ngIf="display.daily_will_it_snow == 1" class="text-center num">{{display.daily_chance_of_snow}}%</p>
+                <p *ngIf="display.daily_will_it_rain == 1">CHANCES OF RAIN</p>
+                <p *ngIf="display.daily_will_it_rain == 1" class="text-center num">{{display.daily_chance_of_rain}}%</p>
+                <p *ngIf="display.daily_will_it_rain == 0 && display.daily_will_it_snow == 0">NO SNOW OR RAIN</p>
+              </div>
+            </ng-container>
           </div>
         </div>
       </div>

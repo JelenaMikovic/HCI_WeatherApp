@@ -1,5 +1,5 @@
 body{
-  background-color: #639ebd;
+  background-image: linear-gradient(to bottom right, #211d1b, #537989);
   font-family: "Poppins";
   font-weight: 300;
   margin: 0;
@@ -19,6 +19,15 @@ html{
     background-color: rgba(0, 0, 0, 0.15);
     border-radius: 5px;
     padding: 5px;
+}
+
+.showBox{
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  padding: 5px;
+  margin: 0;
+  height: 9vh;
+  width: 100%;
 }
 
 p{
@@ -139,7 +148,7 @@ h3{
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.333);
     font-size: 65px;
     margin: 0px;
-    padding: 0px;
+    padding-top: 6px;
     line-height: 1;
 }
 
@@ -169,7 +178,8 @@ h3{
 }
 
 .num{
-    font-size: 30px;
+    font-size: 25px;
+    margin-top: 20%;
 }
 
 .pad{
@@ -521,9 +531,23 @@ h3{
       aspect-ratio: unset;
   }
 
+  .num{
+    margin-top: 0
 }
 
 .bla{
+  margin-top: 0
+}
+
+}
+
+.bla{
+  font-size: 20px;
+  margin-top: 20%;
+}
+
+#karcina{
+  margin-top: 4%;
   font-size: 20px;
 }
 
@@ -720,7 +744,7 @@ div[role="progressbar"]::before {
 }
 
 input{
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: rgba(0, 0, 0, 0.407);
   color: white;
   border: 0;
   border-radius: 2px;
