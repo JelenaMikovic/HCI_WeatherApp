@@ -10,7 +10,7 @@ html{
     margin: 0;
     height: 100%;
     font-weight: lighter;
-    background-color: #639ebd;
+    background-image: linear-gradient(to bottom right, #211d1b, #537989);
     min-height: 100vh;
     position: relative;
 }
@@ -535,15 +535,10 @@ h3{
     margin-top: 0
 }
 
-.bla{
-  margin-top: 0
 }
 
-}
-
-.bla{
+#bla{
   font-size: 20px;
-  margin-top: 20%;
 }
 
 #karcina{
