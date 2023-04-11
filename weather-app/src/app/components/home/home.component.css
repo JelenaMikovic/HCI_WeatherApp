@@ -81,7 +81,7 @@ h3{
 
 #visibility{
     margin: 4px;
-    min-height: 13vh;
+    aspect-ratio: 1 / 1;
     min-width: fit-content;
 }
 
@@ -514,6 +514,14 @@ h3{
     .elem{
       padding: 5px;
     }
+
+    #visibility{
+      margin: 4px;
+      min-height: 13vh;
+      min-width: fit-content;
+      aspect-ratio: unset;
+  }
+  
 }
 
 @media screen and (min-width: 1000px) {
