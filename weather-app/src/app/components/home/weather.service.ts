@@ -19,7 +19,7 @@ export class WeatherService{
   toDate = new Date();
 
   getForecast(city: string): Observable<Forecast> {
-    const url = `${this.apiHost}/forecast.json?key=${this.key}&q=${city}&days=3&aqi=yes&alerts=yes`;
+    const url = `${this.apiHost}/forecast.json?key=${this.key}&q=${city}&days=5&aqi=yes&alerts=yes`;
     return this.http.get<Forecast>(url);
   }
 

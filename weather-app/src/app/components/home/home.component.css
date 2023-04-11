@@ -170,7 +170,6 @@ h3{
 
 .num{
     font-size: 30px;
-    margin-top: 10px;
 }
 
 .pad{
@@ -531,6 +530,9 @@ h3{
 .searchSmall{
   display: none;
 }
+.forcastSmall{
+  display: none;
+}
 }
 
 @media screen and (max-width: 1000px) {
@@ -539,6 +541,10 @@ h3{
   }
 
   .search{
+    display: none;
+  }
+
+  .forcast{
     display: none;
   }
 
@@ -574,6 +580,7 @@ h3{
     position: relative;
     left: 25%;
   }
+
 }
 
 
