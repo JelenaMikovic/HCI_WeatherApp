@@ -47,10 +47,10 @@
 
   <div class="text-center">
     <p class="city">{{forecast.location.name}}</p>
-    <p class="temp">{{forecast.current.temp_c}}</p>
+    <p class="temp">{{forecast.current.temp_c}}<sup>°</sup></p>
     <p class="condition">{{forecast.current.condition.text}}</p>
-    <p class="h-l">H:{{forecast.forecast.forecastday[0].day.maxtemp_c}}
-      L:{{forecast.forecast.forecastday[0].day.mintemp_c}}</p>
+    <p class="h-l">H:{{forecast.forecast.forecastday[0].day.maxtemp_c}}<sup>°</sup>
+      L:{{forecast.forecast.forecastday[0].day.mintemp_c}}<sup>°</sup></p>
   </div>
 
   <div class="alert text-center" *ngIf="alert!='no alerts'">
@@ -78,7 +78,7 @@
                       <div class="kara">
                         <img src="{{hour.condition.icon}}" class="houricon">
                       </div>
-                      <p class="text-center temphour">{{hour.temp_c}}</p>
+                      <p class="text-center temphour">{{hour.temp_c}}<sup>°</sup></p>
                     </div>
                   </div>
 
@@ -96,7 +96,7 @@
                       <div class="kara">
                         <img src="{{hour.condition.icon}}" class="houricon">
                       </div>
-                      <p class="text-center temphour">{{hour.temp_c}}</p>
+                      <p class="text-center temphour">{{hour.temp_c}}<sup>°</sup></p>
                     </div>
                   </div>
 
@@ -118,7 +118,7 @@
                       <div class="kara">
                         <img src="{{hour.condition.icon}}" class="houricon">
                       </div>
-                      <p class="text-center temphour">{{hour.temp_c}}</p>
+                      <p class="text-center temphour">{{hour.temp_c}}<sup>°</sup></p>
                     </div>
                   </div>
 
@@ -136,7 +136,7 @@
                       <div class="kara">
                         <img src="{{hour.condition.icon}}" class="houricon">
                       </div>
-                      <p class="text-center temphour">{{hour.temp_c}}</p>
+                      <p class="text-center temphour">{{hour.temp_c}}<sup>°</sup></p>
                     </div>
                   </div>
 
@@ -153,7 +153,7 @@
                       <div class="kara">
                         <img src="{{hour.condition.icon}}" class="houricon">
                       </div>
-                      <p class="text-center temphour">{{hour.temp_c}}</p>
+                      <p class="text-center temphour">{{hour.temp_c}}<sup>°</sup></p>
                     </div>
                   </div>
 
@@ -170,7 +170,7 @@
                       <div class="kara">
                         <img src="{{hour.condition.icon}}" class="houricon">
                       </div>
-                      <p class="text-center temphour">{{hour.temp_c}}</p>
+                      <p class="text-center temphour">{{hour.temp_c}}<sup>°</sup></p>
                     </div>
                   </div>
 
@@ -187,7 +187,7 @@
                       <div class="kara">
                         <img src="{{hour.condition.icon}}" class="houricon">
                       </div>
-                      <p class="text-center temphour">{{hour.temp_c}}</p>
+                      <p class="text-center temphour">{{hour.temp_c}}<sup>°</sup></p>
                     </div>
                   </div>
 
@@ -204,7 +204,7 @@
                       <div class="kara">
                         <img src="{{hour.condition.icon}}" class="houricon">
                       </div>
-                      <p class="text-center temphour">{{hour.temp_c}}</p>
+                      <p class="text-center temphour">{{hour.temp_c}}<sup>°</sup></p>
                     </div>
                   </div>
 
@@ -239,9 +239,9 @@
                     </div>
                   </div>
                   <div class="col-sm-3 dayOfWeek">
-                    <p class="col-sm-3 tempOfWeek">{{forecast.day.mintemp_c}}</p>
+                    <p class="col-sm-3 tempOfWeek">{{forecast.day.mintemp_c}}<sup>°</sup></p>
                     <hr class="col-sm-5 line">
-                    <p class="col-sm-4">{{forecast.day.maxtemp_c}}</p>
+                    <p class="col-sm-4">{{forecast.day.maxtemp_c}}<sup>°</sup></p>
                   </div>
                 </div>
                 <hr class="row seperate">
@@ -268,9 +268,9 @@
                     </div>
                   </div>
                   <div class="col-sm-3 dayOfWeek">
-                    <p class="col-sm-3 tempOfWeek">{{forecast.day.mintemp_c}}</p>
+                    <p class="col-sm-3 tempOfWeek">{{forecast.day.mintemp_c}}<sup>°</sup></p>
                     <hr class="col-sm-5 line">
-                    <p class="col-sm-4">{{forecast.day.maxtemp_c}}</p>
+                    <p class="col-sm-4">{{forecast.day.maxtemp_c}}<sup>°</sup></p>
                   </div>
                 </div>
                 <hr class="row seperate">
@@ -287,7 +287,7 @@
                         <p>{{getDayOfWeek(forecast.date.substring(0, 10)).substring(0,
                           3)}}. {{forecast.date.substring(8, 10)}}</p>
                       <img class="dayOfWeekIcon" src="{{forecast.day.condition.icon}}">
-                      <p class="kara dayOfWeek">{{forecast.day.mintemp_c}}/{{forecast.day.maxtemp_c}}</p>
+                      <p class="kara dayOfWeek">{{forecast.day.mintemp_c}<sup>°</sup>}/{{forecast.day.maxtemp_c}}<sup>°</sup></p>
                     </div>
                     <div class="col-sm-1">
                       <p>{{forecast.day.condition.text}}</p>
@@ -309,7 +309,7 @@
                           3)}}. {{forecast.date.substring(8, 10)}}</p>
                       </ng-container>
                       <img class="dayOfWeekIcon" src="{{forecast.day.condition.icon}}">
-                      <p class="kara">{{forecast.day.mintemp_c}}/{{forecast.day.maxtemp_c}}</p>
+                      <p class="kara">{{forecast.day.mintemp_c}}<sup>°</sup>/{{forecast.day.maxtemp_c}}<sup>°</sup></p>
                     </div>
                     <div class="col-sm-1">
                       <p>{{forecast.day.condition.text}}</p>
@@ -352,7 +352,7 @@
                 <div class="box" id="visibility">
                   <p *ngIf="showCurrent == false">AVG. TEMP.</p>
                   <p *ngIf="showCurrent">FEELS LIKE</p>
-                  <p class="text-center num">{{display.feelsLike}}</p>
+                  <p class="text-center num">{{display.feelsLike}}<sup>°</sup></p>
                 </div>
               </div>
               <div class="col-sm-6">
