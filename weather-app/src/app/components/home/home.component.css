@@ -521,7 +521,7 @@ h3{
       min-width: fit-content;
       aspect-ratio: unset;
   }
-  
+
 }
 
 @media screen and (min-width: 1000px) {
@@ -771,3 +771,28 @@ input::placeholder {
   position: sticky;
 }
 
+
+/*------------------------- ASTRO DABOGDA CRKO ------------------*/
+.container-astro{
+  display: flex; /* Set the container to use flexbox layout */
+  flex-direction: row; /* Set the direction to horizontal */
+  align-items: center; /* Center the child items vertically */
+  width: 50%;
+}
+
+.container-astro-text{
+  display: flex; /* Set the container to use flexbox layout */
+  flex-direction: row; /* Set the direction to horizontal */
+  align-items: center; /* Center the child items vertically */
+  width: 100%;
+}
+
+.parent-container-astro{
+  padding-top: 10px;
+  display: flex;
+}
+
+.parent-container-astro div{
+  padding-left: 5px;
+  margin-bottom: 5px;
+}

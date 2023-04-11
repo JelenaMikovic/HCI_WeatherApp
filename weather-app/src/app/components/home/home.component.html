@@ -281,26 +281,45 @@
             <div class="row air" id="astro">
               <div class="box">
                 <p class="pad">ASTRO FORECAST</p>
-                <div class="row astroRow">
-                  <div class="col-sm-2"><img src="assets/sunrise.png" class="astroImg"></div>
-                  <p class="col-sm-4 astroText">{{display.astroForecast.sunrise}}</p>
-                  <div class="col-sm-2"><img src="assets/sunset.png" class="astroImg"></div>
-                  <p class="col-sm-4 astroText">{{display.astroForecast.sunset}}</p>
+                <div class="parent-container-astro">
+                  <div class="container-astro">
+                    <img src="assets/sunrise.png" class="astroImg" alt="Image description">
+                    <p>{{display.astroForecast.sunrise}}</p>
+                  </div>
+                  <div class="container-astro">
+                    <img src="assets/sunset.png" class="astroImg" alt="Image description">
+                    <p>{{display.astroForecast.sunset}}</p>
+                  </div>
                 </div>
-                <div class="row astroRow">
-                  <div class="col-sm-2"><img src="assets/moonrise.png" class="astroImg"></div>
-                  <p class="col-sm-4 astroText">{{display.astroForecast.moonrise}}</p>
-                  <div class="col-sm-2"><img src="assets/moonset.png" class="astroImg"></div>
-                  <p class="col-sm-4 astroText">{{display.astroForecast.moonset}}</p>
+                <div class="parent-container-astro">
+                  <div class="container-astro">
+                    <img src="assets/moonrise.png" class="astroImg" alt="Image description">
+                    <p>{{display.astroForecast.moonrise}}</p>
+                  </div>
+                  <div class="container-astro">
+                    <img src="assets/moonset.png" class="astroImg" alt="Image description">
+                    <p>{{display.astroForecast.moonset}}</p>
+                  </div>
                 </div>
-                <div class="row astroRow">
-                  <p class="col-sm-6 astroText">Moon phase:</p>
-                  <p class="col-sm-6 astroText">Illumination:</p>
+                <div class="parent-container-astro">
+                  <div class="container-astro-text">
+                    <p>Moon phase: {{display.astroForecast.moon_phase}}</p>
+                  </div>
                 </div>
-                <div class="row astroRow">
-                  <p class="col-sm-6 astroText">{{display.astroForecast.moon_phase}}</p>
-                  <p class="col-sm-6 astroText">{{display.astroForecast.moon_illumination}}</p>
+                <div class="parent-container-astro">
+                  <div class="container-astro-text">
+                    <p>Illumination:{{display.astroForecast.moon_illumination}}</p>
+                  </div>
                 </div>
+
+<!--                <div class="row astroRow">-->
+<!--                  <p class="col-sm-6 astroText"></p>-->
+<!--                  <p class="col-sm-6 astroText"></p>-->
+<!--                </div>-->
+<!--                <div class="row astroRow">-->
+<!--                  <p class="col-sm-6 astroText">{{display.astroForecast.moon_phase}}</p>-->
+<!--                  <p class="col-sm-6 astroText">{{display.astroForecast.moon_illumination}}</p>-->
+<!--                </div>-->
               </div>
             </div>
 
